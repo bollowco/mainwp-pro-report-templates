@@ -26,10 +26,10 @@ $is_plugin_active_analytics = is_plugin_active('mainwp-google-analytics-extensio
 $is_plugin_active_lighthouse = is_plugin_active('mainwp-lighthouse-extension/mainwp-lighthouse-extension.php');
 
 $report_heading = $report->heading;
-$report_intro = MainWP_Pro_Reports_Utility::esc_content(nl2br($report->intro));
+$report_intro_support_email = 'edgar@edgarbollow.com';
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="de">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,7 +48,6 @@ $report_intro = MainWP_Pro_Reports_Utility::esc_content(nl2br($report->intro));
 			-webkit-text-size-adjust: none;
 			-moz-text-size-adjust: none;
 			print-color-adjust: exact;
-			-webkit-print-color-adjust: exact;
 		}
 
 		body {
@@ -241,7 +240,11 @@ $report_intro = MainWP_Pro_Reports_Utility::esc_content(nl2br($report->intro));
 		</header>
 		<section class="flow page-break" aria-labelledby="website-care-report">
 			<h1 id="website-care-report"><?= $report_heading ?></h1>
-			<div class="flow text-size--xl"><?= $report_intro ?></div>
+			<div class="flow text-size--xl">
+				<p>Im Rahmen unserer Vereinbarung betreue ich deine Website <strong>[client.site.name]</strong>. Vielen Dank für dein Vertrauen.</p>
+				<p>In diesem Bericht erhältst du eine Zusammenfassung des Zustands deiner Website und der im Zeitraum vom <strong>[report.daterange]</strong> erbrachten Wartungsarbeiten.</p>
+				<p>Falls du Hilfe benötigst oder Fragen hast, <a href="<?= "mailto:{$report_intro_support_email}" ?>">kontaktiere mich</a> gerne.</p>
+			</div>
 		</section>
 		<section aria-labelledby="overview">
 			<h2 id="overview" class="section-heading-spacer">Übersicht</h2>
