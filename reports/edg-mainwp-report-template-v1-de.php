@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: edg_report_template_v1_de
-Description: Custom template for the MainWP Pro Reports extension
+Description: Custom template for the MainWP Pro Reports extension.
 Author: Edgar Bollow
 Version: 1.0.0
 Screenshot URI: ../wp-content/plugins/mainwp-pro-reports-extension/images/template-modern.jpg
