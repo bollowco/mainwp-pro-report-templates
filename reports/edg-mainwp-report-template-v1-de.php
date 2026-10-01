@@ -1,32 +1,39 @@
 <?php
 /*
-Template Name: edg_report_template_v1_de
-Description: Custom template for the MainWP Pro Reports extension.
+Template Name: EDG Report Template v1-de
 Author: Edgar Bollow
+Description: Custom template for the MainWP Pro Reports extension.
 Version: 1.0.0
-Screenshot URI: ../wp-content/plugins/mainwp-pro-reports-extension/images/template-modern.jpg
 */
 
-$get_config_token = function($option = null) use($report) {
-	$showhide_values = json_decode($report->showhide_sections, true) ?? [];
-	$config_tokens = [
+if (!defined('ABSPATH')) {
+	exit;
+}
+
+$printSectionVisibility = function ($option = null) use ($report) {
+	$sections = json_decode($report->showhide_sections, true) ?? [];
+
+	$options = [
 		0 => '[hide-if-empty]',
-		1 => '',
+		1 => '', // Show report data
 		2 => '[hide-section-data]'
 	];
 
-	$option = array_key_exists($option, $showhide_values) ? $showhide_values[$option] : 2;
-	return $config_tokens[$option];
+	$option = array_key_exists($option, $sections) ? $sections[$option] : 2;
+
+	return $options[$option];
 };
 
-$is_plugin_active_uptime = is_plugin_active('advanced-uptime-monitor-extension/advanced-uptime-monitor-extension.php');
-$is_plugin_active_maintenance = is_plugin_active('mainwp-maintenance-extension/mainwp-maintenance-extension.php');
-$is_plugin_active_backups = is_plugin_active('wpvivid-backup-mainwp/wpvivid-backup-mainwp.php');
-$is_plugin_active_analytics = is_plugin_active('mainwp-google-analytics-extension/mainwp-google-analytics-extension.php');
-$is_plugin_active_lighthouse = is_plugin_active('mainwp-lighthouse-extension/mainwp-lighthouse-extension.php');
+$isModuleActiveAnalytics = is_plugin_active('mainwp-google-analytics-extension/mainwp-google-analytics-extension.php');
+$isModuleActiveLighthouse = is_plugin_active('mainwp-lighthouse-extension/mainwp-lighthouse-extension.php');
+$isModuleActiveUptime = is_plugin_active('advanced-uptime-monitor-extension/advanced-uptime-monitor-extension.php');
+$isModuleActiveMaintenance = is_plugin_active('mainwp-maintenance-extension/mainwp-maintenance-extension.php');
+$isModuleActiveBackups = is_plugin_active('wpvivid-backup-mainwp/wpvivid-backup-mainwp.php');
 
-$report_heading = $report->heading;
-$report_intro_support_email = 'edgar@edgarbollow.com';
+$reportTitle = $report->heading;
+
+$supportEmail = 'edgar@edgarbollow.com';
+$supportMessagingId = 'bollowco';
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -34,6 +41,8 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
+		/* In some places, older CSS is intentionally used to ensure stability with `dompdf`. */
+
 		* {
 			box-sizing: border-box;
 			margin: 0;
@@ -57,7 +66,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 			font-family: ui-sans-serif, system-ui, sans-serif;
 			font-size: 1rem;
 			font-weight: 400;
-			line-height: 1.625;
+			line-height: 1.5;
 			overflow-wrap: break-word;
 			text-wrap: pretty;
 			text-underline-offset: .15em;
@@ -178,7 +187,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 
 		header img {
 			display: inline-block;
-			width: 200px;
+			width: 160px;
 			filter: grayscale(1);
 		}
 
@@ -235,29 +244,98 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 </head>
 <body>
 	<main class="flow" style="--_spacer: 3.75rem;">
+
 		<header>
-			<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ijg4LjM2IDY5IDgyMy43MiAxMTIiPjxsaW5lYXJHcmFkaWVudCBpZD0iQSIgeDE9IjE2Mi42NTIiIHkxPSIxNzAuODI1IiB4Mj0iMTA4LjgyOCIgeTI9Ijc5LjA2NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjAwNCIgc3RvcC1jb2xvcj0iIzFiNDc2OCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVkOWFjOSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzViOTljOSIvPjwvbGluZWFyR3JhZGllbnQ+PGcgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSJ1cmwoI0EpIiBkPSJNMTMxLjYgMTgxSDg4LjM2NFY2OWw0My4yMzYuMDU5djE5LjMwOGwtMjAuNzU5LjA4NXYyNC42OTVsMjAuNzU5LjA0NXYxOC4zODlsLTIwLjc1OS4xMDZ2MjkuODYybDIwLjc1OS0uMDg2em00LjA4Ny0xOS41MzhsMy42OS4wODZjNC45NDQgMCA4Ljc5Mi0uNjU5IDExLjU0NC0xLjk3NiA0Ljk5NS0yLjQzMiA3LjQ5Mi03LjA5MiA3LjQ5Mi0xMy45ODEgMC01LjgyNS0yLjQyMS05LjgyNy03LjI2My0xMi4wMDUtMi43MDEtMS4yMTYtNi40OTgtMS44NDktMTEuMzkxLTEuOWwtNC4wNzItLjEwNnYtMTguMzg5bDMuNjktLjA0NWM0Ljk0NCAwIDguOTctLjkzNyAxMi4wNzktMi44MTFoMGMzLjA1OC0xLjgyNCA0LjU4Ny01LjA5MSA0LjU4Ny05LjgwMiAwLTUuMjE4LTIuMDM5LTguNjYyLTYuMTE2LTEwLjMzNC0zLjUxNy0xLjE2NS04LjAwMi0xLjc0OC0xMy40NTYtMS43NDhsLS43ODUtLjA4NVY2OS4wNTlsOC4yNzctLjA1OWMxMy44MTIuMjAzIDIzLjU5OCA0LjE3OSAyOS4zNTggMTEuOTI5IDMuNDY2IDQuNzYyIDUuMTk5IDEwLjQ2IDUuMTk5IDE3LjA5NiAwIDYuODM5LTEuNzMzIDEyLjMzNS01LjE5OSAxNi40ODgtMS45MzcgMi4zMy00Ljc5MSA0LjQ1OC04LjU2MyA2LjM4MyA1Ljc1OSAyLjA3NyAxMC4xMDQgNS4zNjkgMTMuMDM1IDkuODc4czQuMzk2IDkuOTc5IDQuMzk2IDE2LjQxMmMwIDYuNjM2LTEuNjgyIDEyLjU4OC01LjA0NiAxNy44NTYtMi4xNDEgMy40OTUtNC44MTYgNi40MzMtOC4wMjcgOC44MTQtMy42MTkgMi43MzUtNy44ODcgNC42MS0xMi44MDYgNS42MjNTMTQ2LjA1NCAxODEgMTQwLjI5NCAxODFoLTQuNjA4eiIvPjxwYXRoIGQ9Ik04ODQuOCAxNTJoMTIuMDhsMTUuMi01My4zNmgtMTIuOEw4OTAgMTM3LjJsLTEwLjA4LTM4LjU2aC04Ljg4bC0xMC4xNiAzOC41Ni05LjM2LTM4LjU2SDgzOC44TDg1NC4wOCAxNTJoMTIuMDhsOS4yOC0zNi42NHptLTEwOC41Ni0yNi42NGMwIDE2LjA4IDExLjc2IDI3LjYgMjcuODQgMjcuNiAxNi4xNiAwIDI3LjkyLTExLjUyIDI3LjkyLTI3LjZzLTExLjc2LTI3LjYtMjcuOTItMjcuNmMtMTYuMDggMC0yNy44NCAxMS41Mi0yNy44NCAyNy42em00NC4wOCAwYzAgOS45Mi02LjQgMTcuNTItMTYuMjQgMTcuNTJzLTE2LjE2LTcuNi0xNi4xNi0xNy41MmMwLTEwIDYuMzItMTcuNTIgMTYuMTYtMTcuNTJzMTYuMjQgNy41MiAxNi4yNCAxNy41MnpNNzMzLjUyIDE1MmgzMy45MnYtMTBoLTIyLjU2Vjk4LjY0aC0xMS4zNnptLTQ3LjQ0IDBINzIwdi0xMGgtMjIuNTZWOTguNjRoLTExLjM2em0tNjkuMzYtMjYuNjRjMCAxNi4wOCAxMS43NiAyNy42IDI3Ljg0IDI3LjYgMTYuMTYgMCAyNy45Mi0xMS41MiAyNy45Mi0yNy42cy0xMS43Ni0yNy42LTI3LjkyLTI3LjZjLTE2LjA4IDAtMjcuODQgMTEuNTItMjcuODQgMjcuNnptNDQuMDggMGMwIDkuOTItNi40IDE3LjUyLTE2LjI0IDE3LjUycy0xNi4xNi03LjYtMTYuMTYtMTcuNTJjMC0xMCA2LjMyLTE3LjUyIDE2LjE2LTE3LjUyczE2LjI0IDcuNTIgMTYuMjQgMTcuNTJ6TTU2MC42NCAxNTJoMjguOTZjMTAuMTYgMCAxNS41Mi02LjQgMTUuNTItMTQuNCAwLTYuNzItNC41Ni0xMi4yNC0xMC4yNC0xMy4xMiA1LjA0LTEuMDQgOS4yLTUuNTIgOS4yLTEyLjI0IDAtNy4xMi01LjItMTMuNi0xNS4zNi0xMy42aC0yOC4wOHpNNTcyIDEyMC4wOHYtMTEuNzZoMTQuMjRjMy44NCAwIDYuMjQgMi41NiA2LjI0IDUuODQgMCAzLjQ0LTIuNCA1LjkyLTYuMjQgNS45MnptMCAyMi4yNHYtMTIuNTZoMTQuNjRjNC40OCAwIDYuODggMi44OCA2Ljg4IDYuMjQgMCAzLjg0LTIuNTYgNi4zMi02Ljg4IDYuMzJ6TTUwNy42OCAxNTJoMTMuMDRsLTEyLTIwLjMyYzUuNzYtMS4zNiAxMS42OC02LjQgMTEuNjgtMTUuODQgMC05LjkyLTYuOC0xNy4yLTE3LjkyLTE3LjJoLTI0Ljk2VjE1MmgxMS4zNnYtMTkuMTJoOC4zMnptMS4xMi0zNi4yNGMwIDQuNDgtMy40NCA3LjM2LTggNy4zNmgtMTEuOTJWMTA4LjRoMTEuOTJjNC41NiAwIDggMi44OCA4IDcuMzZ6TTQ1NC41NiAxNTJoMTIuNEw0NDYuNCA5OC42NGgtMTQuMjRMNDExLjUyIDE1Mkg0MjRsMy4zNi05LjJoMjMuODR6bS0xNS4yOC00My41Mmw4LjggMjQuNDhINDMwLjR6TTM1MiAxMjUuMzZjMCAxNi44IDEyLjggMjcuNjggMjguNCAyNy42OCA5LjY4IDAgMTcuMjgtNCAyMi43Mi0xMC4wOHYtMjAuNGgtMjUuNDR2OS43NmgxNC4yNHY2LjQ4Yy0yLjMyIDIuMDgtNi42NCA0LjA4LTExLjUyIDQuMDgtOS42OCAwLTE2LjcyLTcuNDQtMTYuNzItMTcuNTJzNy4wNC0xNy41MiAxNi43Mi0xNy41MmM1LjYgMCAxMC4xNiAyLjk2IDEyLjY0IDYuNzJsOS40NC01LjEyYy00LjA4LTYuMzItMTEuMDQtMTEuNjgtMjIuMDgtMTEuNjgtMTUuNiAwLTI4LjQgMTAuNzItMjguNCAyNy42ek0yOTEuNTIgMTUyaDIxLjA0YzE2LjcyIDAgMjguMzItMTAuNTYgMjguMzItMjYuNjRzLTExLjYtMjYuNzItMjguMzItMjYuNzJoLTIxLjA0em0xMS4zNi0xMHYtMzMuMzZoOS42OGMxMC45NiAwIDE2LjcyIDcuMjggMTYuNzIgMTYuNzIgMCA5LjA0LTYuMTYgMTYuNjQtMTYuNzIgMTYuNjR6bS02My42IDEwaDM3Ljc2di05Ljg0aC0yNi40di0xMi40aDI1Ljg0VjEyMGgtMjUuODR2LTExLjZoMjYuNHYtOS43NmgtMzcuNzZ6Ii8+PC9nPjwvc3ZnPg==" alt="Logo &ndash; Edgar Bollow">
+			<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ijg4LjM2IDY5IDgyMy43MiAxMTIiPjxsaW5lYXJHcmFkaWVudCBpZD0iQSIgeDE9IjE2Mi42NTIiIHkxPSIxNzAuODI1IiB4Mj0iMTA4LjgyOCIgeTI9Ijc5LjA2NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjAwNCIgc3RvcC1jb2xvcj0iIzFiNDc2OCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVkOWFjOSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzViOTljOSIvPjwvbGluZWFyR3JhZGllbnQ+PGcgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSJ1cmwoI0EpIiBkPSJNMTMxLjYgMTgxSDg4LjM2NFY2OWw0My4yMzYuMDU5djE5LjMwOGwtMjAuNzU5LjA4NXYyNC42OTVsMjAuNzU5LjA0NXYxOC4zODlsLTIwLjc1OS4xMDZ2MjkuODYybDIwLjc1OS0uMDg2em00LjA4Ny0xOS41MzhsMy42OS4wODZjNC45NDQgMCA4Ljc5Mi0uNjU5IDExLjU0NC0xLjk3NiA0Ljk5NS0yLjQzMiA3LjQ5Mi03LjA5MiA3LjQ5Mi0xMy45ODEgMC01LjgyNS0yLjQyMS05LjgyNy03LjI2My0xMi4wMDUtMi43MDEtMS4yMTYtNi40OTgtMS44NDktMTEuMzkxLTEuOWwtNC4wNzItLjEwNnYtMTguMzg5bDMuNjktLjA0NWM0Ljk0NCAwIDguOTctLjkzNyAxMi4wNzktMi44MTFoMGMzLjA1OC0xLjgyNCA0LjU4Ny01LjA5MSA0LjU4Ny05LjgwMiAwLTUuMjE4LTIuMDM5LTguNjYyLTYuMTE2LTEwLjMzNC0zLjUxNy0xLjE2NS04LjAwMi0xLjc0OC0xMy40NTYtMS43NDhsLS43ODUtLjA4NVY2OS4wNTlsOC4yNzctLjA1OWMxMy44MTIuMjAzIDIzLjU5OCA0LjE3OSAyOS4zNTggMTEuOTI5IDMuNDY2IDQuNzYyIDUuMTk5IDEwLjQ2IDUuMTk5IDE3LjA5NiAwIDYuODM5LTEuNzMzIDEyLjMzNS01LjE5OSAxNi40ODgtMS45MzcgMi4zMy00Ljc5MSA0LjQ1OC04LjU2MyA2LjM4MyA1Ljc1OSAyLjA3NyAxMC4xMDQgNS4zNjkgMTMuMDM1IDkuODc4czQuMzk2IDkuOTc5IDQuMzk2IDE2LjQxMmMwIDYuNjM2LTEuNjgyIDEyLjU4OC01LjA0NiAxNy44NTYtMi4xNDEgMy40OTUtNC44MTYgNi40MzMtOC4wMjcgOC44MTQtMy42MTkgMi43MzUtNy44ODcgNC42MS0xMi44MDYgNS42MjNTMTQ2LjA1NCAxODEgMTQwLjI5NCAxODFoLTQuNjA4eiIvPjxwYXRoIGQ9Ik04ODQuOCAxNTJoMTIuMDhsMTUuMi01My4zNmgtMTIuOEw4OTAgMTM3LjJsLTEwLjA4LTM4LjU2aC04Ljg4bC0xMC4xNiAzOC41Ni05LjM2LTM4LjU2SDgzOC44TDg1NC4wOCAxNTJoMTIuMDhsOS4yOC0zNi42NHptLTEwOC41Ni0yNi42NGMwIDE2LjA4IDExLjc2IDI3LjYgMjcuODQgMjcuNiAxNi4xNiAwIDI3LjkyLTExLjUyIDI3LjkyLTI3LjZzLTExLjc2LTI3LjYtMjcuOTItMjcuNmMtMTYuMDggMC0yNy44NCAxMS41Mi0yNy44NCAyNy42em00NC4wOCAwYzAgOS45Mi02LjQgMTcuNTItMTYuMjQgMTcuNTJzLTE2LjE2LTcuNi0xNi4xNi0xNy41MmMwLTEwIDYuMzItMTcuNTIgMTYuMTYtMTcuNTJzMTYuMjQgNy41MiAxNi4yNCAxNy41MnpNNzMzLjUyIDE1MmgzMy45MnYtMTBoLTIyLjU2Vjk4LjY0aC0xMS4zNnptLTQ3LjQ0IDBINzIwdi0xMGgtMjIuNTZWOTguNjRoLTExLjM2em0tNjkuMzYtMjYuNjRjMCAxNi4wOCAxMS43NiAyNy42IDI3Ljg0IDI3LjYgMTYuMTYgMCAyNy45Mi0xMS41MiAyNy45Mi0yNy42cy0xMS43Ni0yNy42LTI3LjkyLTI3LjZjLTE2LjA4IDAtMjcuODQgMTEuNTItMjcuODQgMjcuNnptNDQuMDggMGMwIDkuOTItNi40IDE3LjUyLTE2LjI0IDE3LjUycy0xNi4xNi03LjYtMTYuMTYtMTcuNTJjMC0xMCA2LjMyLTE3LjUyIDE2LjE2LTE3LjUyczE2LjI0IDcuNTIgMTYuMjQgMTcuNTJ6TTU2MC42NCAxNTJoMjguOTZjMTAuMTYgMCAxNS41Mi02LjQgMTUuNTItMTQuNCAwLTYuNzItNC41Ni0xMi4yNC0xMC4yNC0xMy4xMiA1LjA0LTEuMDQgOS4yLTUuNTIgOS4yLTEyLjI0IDAtNy4xMi01LjItMTMuNi0xNS4zNi0xMy42aC0yOC4wOHpNNTcyIDEyMC4wOHYtMTEuNzZoMTQuMjRjMy44NCAwIDYuMjQgMi41NiA2LjI0IDUuODQgMCAzLjQ0LTIuNCA1LjkyLTYuMjQgNS45MnptMCAyMi4yNHYtMTIuNTZoMTQuNjRjNC40OCAwIDYuODggMi44OCA2Ljg4IDYuMjQgMCAzLjg0LTIuNTYgNi4zMi02Ljg4IDYuMzJ6TTUwNy42OCAxNTJoMTMuMDRsLTEyLTIwLjMyYzUuNzYtMS4zNiAxMS42OC02LjQgMTEuNjgtMTUuODQgMC05LjkyLTYuOC0xNy4yLTE3LjkyLTE3LjJoLTI0Ljk2VjE1MmgxMS4zNnYtMTkuMTJoOC4zMnptMS4xMi0zNi4yNGMwIDQuNDgtMy40NCA3LjM2LTggNy4zNmgtMTEuOTJWMTA4LjRoMTEuOTJjNC41NiAwIDggMi44OCA4IDcuMzZ6TTQ1NC41NiAxNTJoMTIuNEw0NDYuNCA5OC42NGgtMTQuMjRMNDExLjUyIDE1Mkg0MjRsMy4zNi05LjJoMjMuODR6bS0xNS4yOC00My41Mmw4LjggMjQuNDhINDMwLjR6TTM1MiAxMjUuMzZjMCAxNi44IDEyLjggMjcuNjggMjguNCAyNy42OCA5LjY4IDAgMTcuMjgtNCAyMi43Mi0xMC4wOHYtMjAuNGgtMjUuNDR2OS43NmgxNC4yNHY2LjQ4Yy0yLjMyIDIuMDgtNi42NCA0LjA4LTExLjUyIDQuMDgtOS42OCAwLTE2LjcyLTcuNDQtMTYuNzItMTcuNTJzNy4wNC0xNy41MiAxNi43Mi0xNy41MmM1LjYgMCAxMC4xNiAyLjk2IDEyLjY0IDYuNzJsOS40NC01LjEyYy00LjA4LTYuMzItMTEuMDQtMTEuNjgtMjIuMDgtMTEuNjgtMTUuNiAwLTI4LjQgMTAuNzItMjguNCAyNy42ek0yOTEuNTIgMTUyaDIxLjA0YzE2LjcyIDAgMjguMzItMTAuNTYgMjguMzItMjYuNjRzLTExLjYtMjYuNzItMjguMzItMjYuNzJoLTIxLjA0em0xMS4zNi0xMHYtMzMuMzZoOS42OGMxMC45NiAwIDE2LjcyIDcuMjggMTYuNzIgMTYuNzIgMCA5LjA0LTYuMTYgMTYuNjQtMTYuNzIgMTYuNjR6bS02My42IDEwaDM3Ljc2di05Ljg0aC0yNi40di0xMi40aDI1Ljg0VjEyMGgtMjUuODR2LTExLjZoMjYuNHYtOS43NmgtMzcuNzZ6Ii8+PC9nPjwvc3ZnPg==" alt="Logo von Edgar Bollow">
 		</header>
-		<section class="flow page-break" aria-labelledby="website-care-report">
-			<h1 id="website-care-report"><?= $report_heading ?></h1>
+
+		<section class="flow" aria-labelledby="report-title">
+			<h1 id="report-title"><?= esc_html($reportTitle) ?></h1>
 			<div class="flow text-size--xl">
 				<p>Im Rahmen unserer Vereinbarung betreue ich deine Website <strong>[client.site.name]</strong>. Vielen Dank für dein Vertrauen.</p>
 				<p>In diesem Bericht erhältst du eine Zusammenfassung des Zustands deiner Website und der im Zeitraum vom <strong>[report.daterange]</strong> erbrachten Wartungsarbeiten.</p>
-				<p>Falls du Hilfe benötigst oder Fragen hast, <a href="<?= "mailto:{$report_intro_support_email}" ?>">kontaktiere mich</a> gerne.</p>
+				<p>Falls du Hilfe benötigst oder Fragen hast, schreib mir gerne eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
 			</div>
 		</section>
-		<section aria-labelledby="overview">
-			<h2 id="overview" class="section-heading-spacer">Übersicht</h2>
+
+		<section class="page-break" aria-label="Übersicht">
 			<table>
 				<tbody>
+
 					<tr>
 						<th>Website</th>
 						<td><a href="[client.site.url]" rel="external">[client.site.name]</a></td>
 					</tr>
+
 					<tr>
 						<th>Zeitraum</th>
 						<td>[report.daterange]</td>
 					</tr>
+
+					<?php if ($isModuleActiveAnalytics): ?>
+
+					[config-section-data]
+					[config-section-extra max-empty="1" /]
+					<?= $printSectionVisibility('ga') ?>
+
+					<tr>
+						<th>Besucher</th>
+						<td>[ga.visits]</td>
+					</tr>
+
+					[/config-section-data]
+
+					<?php endif; ?>
+
+					<?php if ($isModuleActiveLighthouse): ?>
+
+					[config-section-data]
+					[config-section-extra max-empty="2" /]
+					<?= $printSectionVisibility('lighthouse') ?>
+
+					<tr>
+						<th>Geschwindigkeit: Computer</th>
+						<td>[lighthouse.performance.desktop]/100</td>
+					</tr>
+					<tr>
+						<th>Geschwindigkeit: Handy</th>
+						<td>[lighthouse.performance.mobile]/100</td>
+					</tr>
+
+					[/config-section-data]
+
+					<?php endif; ?>
+
+					<?php if ($isModuleActiveUptime): ?>
+
+					[config-section-data]
+					[config-section-extra max-empty="1" /]
+					<?= $printSectionVisibility('uptime') ?>
+
+					<tr>
+						<th>Verfügbarkeit</th>
+						<td>[aum.uptime30]</td>
+					</tr>
+
+					[/config-section-data]
+
+					<?php endif; ?>
+
+					<?php if ($isModuleActiveMaintenance): ?>
+
+					[config-section-data]
+					[config-section-extra max-empty="1" /]
+					<?= $printSectionVisibility('maintenance') ?>
+
+					<tr>
+						<th>Datenbankbereinigungen</th>
+						<td>[maintenance.process.count]</td>
+					</tr>
+
+					[/config-section-data]
+
+					<?php endif; ?>
+
 					<tr>
 						<th>PHP-Version</th>
 						<td>[client.site.php]</td>
@@ -266,91 +344,201 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 						<th>WordPress-Version</th>
 						<td>[client.site.version]</td>
 					</tr>
-					<?php if ($is_plugin_active_uptime): ?>
+
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('uptime') ?>
+					<?= $printSectionVisibility('wp-update') ?>
+
 					<tr>
-						<th>Erreichbarkeitsquote insgesamt bisher</th>
-						<td>[aum.alltimeuptimeratio]</td>
-					</tr>
-					[/config-section-data]
-					<?php endif; ?>
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('wp-update') ?>
-					<tr>
-						<th>Durchgeführte WordPress Core-Updates</th>
+						<th>Updates: WordPress</th>
 						<td>[wordpress.updated.count]</td>
 					</tr>
+
 					[/config-section-data]
+
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('themes-updates') ?>
+					<?= $printSectionVisibility('themes-updates') ?>
+
 					<tr>
-						<th>Durchgeführte Theme-Updates</th>
+						<th>Updates: Themes</th>
 						<td>[theme.updated.count]</td>
 					</tr>
+
 					[/config-section-data]
+
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('plugins-updates') ?>
+					<?= $printSectionVisibility('plugins-updates') ?>
+
 					<tr>
-						<th>Durchgeführte Plugin-Updates</th>
+						<th>Updates: Plugins</th>
 						<td>[plugin.updated.count]</td>
 					</tr>
+
 					[/config-section-data]
-					<?php if ($is_plugin_active_maintenance): ?>
+
+					<?php if ($isModuleActiveBackups): ?>
+
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('maintenance') ?>
+					<?= $printSectionVisibility('backups') ?>
+
 					<tr>
-						<th>Durchgeführte Cleanup-Routinen</th>
-						<td>[maintenance.process.count]</td>
-					</tr>
-					[/config-section-data]
-					<?php endif; ?>
-					<?php if ($is_plugin_active_backups): ?>
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('backups') ?>
-					<tr>
-						<th>Erstellte Backups</th>
+						<th>Backups</th>
 						<td>[backup.created.count]</td>
 					</tr>
+
 					[/config-section-data]
+
 					<?php endif; ?>
-					<?php if ($is_plugin_active_analytics): ?>
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-					<?= $get_config_token('ga') ?>
-					<tr>
-						<th>Besuche</th>
-						<td>[ga.visits]</td>
-					</tr>
-					[/config-section-data]
-					<?php endif; ?>
-					<?php if ($is_plugin_active_lighthouse): ?>
-					[config-section-data]
-					[config-section-extra max-empty="2" /]
-					<?= $get_config_token('lighthouse') ?>
-					<tr>
-						<th>Desktop-Geschwindigkeit</th>
-						<td>[lighthouse.performance.desktop] / 100</td>
-					</tr>
-					<tr>
-						<th>Mobile-Geschwindigkeit</th>
-						<td>[lighthouse.performance.mobile] / 100</td>
-					</tr>
-					[/config-section-data]
-					<?php endif; ?>
+
 				</tbody>
 			</table>
 		</section>
-		<?php if ($is_plugin_active_uptime): ?>
+
+		<?php if ($isModuleActiveAnalytics): ?>
+
+		[config-section-data]
+		[config-section-extra max-empty="7" /]
+		<?= $printSectionVisibility('ga') ?>
+
+		<section aria-labelledby="analytics">
+			<div class="flow section-heading-spacer">
+				<h2 id="analytics">Besucher deiner Website</h2>
+				<p>Hier siehst du, wie oft deine Website im Berichtszeitraum besucht wurde und was die Besucher dort getan haben. Gemessen wird mit Google Analytics, einem Statistikdienst von Google. Jede Zahl ist darunter kurz erklärt. Schwankungen von Monat zu Monat sind ganz normal.</p>
+			</div>
+			<table class="section-heading-spacer">
+				<tbody>
+
+					<tr>
+						<th style="width: 30%;">Besuche</th>
+						<td>[ga.visits]</td>
+						<td class="table-column-size--1-2">Wie oft deine Website in diesem Zeitraum aufgerufen wurde. Ein Besuch endet nach 30 Minuten ohne Aktivität. Kommt dieselbe Person an zwei Tagen vorbei, sind das zwei Besuche – die Zahl entspricht also nicht der Anzahl der Personen.</td>
+					</tr>
+
+					<tr>
+						<th>Besucherstärkster Tag</th>
+						<td>[ga.visits.maximum]</td>
+						<td>Der Tag mit den meisten Besuchen im zurückliegenden Monat, samt Anzahl. Auffällige Spitzen haben meist einen Anlass, zum Beispiel einen Newsletter, einen Social-Media-Beitrag oder eine Pressemeldung.</td>
+					</tr>
+
+					<tr>
+						<th>Neue Besuche</th>
+						<td>[ga.new.visits]</td>
+						<td>Der Anteil der Besuche von Personen, die zum ersten Mal auf deiner Website waren. Der Rest sind Besucher, die zurückkehren. Beides ist wichtig: Neue Besuche zeigen, dass du gefunden wirst, wiederkehrende, dass deine Seite überzeugt. Wer ein anderes Gerät nutzt oder seine Cookies gelöscht hat, zählt erneut als neu.</td>
+					</tr>
+
+					<tr>
+						<th>Seitenaufrufe</th>
+						<td>[ga.pageviews]</td>
+						<td>Wie oft insgesamt eine Seite angezeigt wurde. Sieht sich jemand Startseite, Leistungen und Kontaktseite an, sind das 3 Seitenaufrufe, aber nur 1 Besuch. Auch das erneute Laden einer Seite zählt mit.</td>
+					</tr>
+
+					<tr>
+						<th>Seiten pro Besuch</th>
+						<td>[ga.pages.visit]</td>
+						<td>Wie viele Seiten sich Besucher pro Besuch im Durchschnitt ansehen (Seitenaufrufe geteilt durch Besuche). Ein Wert von 1,0 bedeutet: Es wurde meist nur eine Seite angesehen. Bei 3,0 stöbern Besucher auf mehreren Seiten. Bei kleinen Websites sind niedrige Werte normal, wenn jemand nur eine bestimmte Information sucht, zum Beispiel die Öffnungszeiten.</td>
+					</tr>
+
+					<tr>
+						<th>Besuchszeit</th>
+						<td>[ga.avg.time]</td>
+						<td>Wie lange sich Besucher pro Besuch im Durchschnitt aktiv auf deiner Website aufhalten, angegeben als Stunden:Minuten:Sekunden. Ein Wert von 0:02:05 bedeutet 2 Minuten und 5 Sekunden. Kurze Zeiten sind nicht automatisch schlecht: Wer nur die Telefonnummer sucht, hat sie nach 20 Sekunden gefunden und ist zufrieden.</td>
+					</tr>
+
+					<tr>
+						<th>Absprungrate</th>
+						<td>[ga.bounce.rate]</td>
+						<td>Der Anteil der Besuche, bei denen sich jemand nur ganz kurz umgesehen hat: weniger als 10 Sekunden, keine zweite Seite aufgerufen und nichts ausgelöst (zum Beispiel keine Anfrage gesendet). Ein niedriger Wert ist besser. Er sagt aber nicht, ob jemand gefunden hat, was er suchte: Wer in wenigen Sekunden eine Telefonnummer abliest und anruft, zählt ebenfalls als Absprung.</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<figure>
+				[ga.visits.chart]
+				<figcaption>Besuche grafisch dargestellt ([ga.startdate] – [ga.enddate])</figcaption>
+			</figure>
+		</section>
+
+		[/config-section-data]
+
+		<?php endif; ?>
+
+		<?php if ($isModuleActiveLighthouse): ?>
+
+		[config-section-data]
+		[config-section-extra max-empty="10" /]
+		<?= $printSectionVisibility('lighthouse') ?>
+
+		<section aria-labelledby="performance">
+			<div class="flow section-heading-spacer">
+				<h2 id="performance">Technischer Check deiner Website</h2>
+				<p>Hier siehst du das Ergebnis automatischer Tests, die regelmäßig prüfen, wie schnell deine Website lädt und wie sauber sie technisch gebaut ist. Getestet wird mit Google Lighthouse (PageSpeed Insights), einem kostenlosen Werkzeug von Google, jeweils für Computer und Handy. Jeder Bereich bekommt bis zu 100 Punkte: 90 bis 100 ist gut, 50 bis 89 ausbaufähig, unter 50 schwach.</p>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th class="th" style="width: 30%;"></th>
+						<th class="th">Computer</th>
+						<th class="th">Handy</th>
+						<th class="th" style="width: 30%;">Was bedeutet das?</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr>
+						<th>Geschwindigkeit</th>
+						<td>[lighthouse.performance.desktop]/100</td>
+						<td>[lighthouse.performance.mobile]/100</td>
+						<td>Wie schnell deine Seite lädt, wie schnell sie auf Klicks reagiert und ob beim Laden nichts verrutscht. Je höher der Wert, desto weniger müssen Besucher warten.</td>
+					</tr>
+
+					<tr>
+						<th>Barrierefreiheit</th>
+						<td>[lighthouse.accessibility.desktop]/100</td>
+						<td>[lighthouse.accessibility.mobile]/100</td>
+						<td>Wie gut deine Seite für alle nutzbar ist, auch für Menschen mit Einschränkungen, etwa beim Sehen. Geprüft werden zum Beispiel Farbkontraste, Bildbeschreibungen und beschriftete Formularfelder. Der Test erkennt nur einen Teil möglicher Hürden, 100 Punkte heißen also nicht, dass alles perfekt ist.</td>
+					</tr>
+
+					<tr>
+						<th>Technische Qualität</th>
+						<td>[lighthouse.bestpractices.desktop]/100</td>
+						<td>[lighthouse.bestpractices.mobile]/100</td>
+						<td>Ob deine Seite nach aktuellen technischen Standards gebaut ist, zum Beispiel mit verschlüsselter Verbindung (HTTPS) und ohne versteckte Fehlermeldungen im Hintergrund.</td>
+					</tr>
+
+					<tr>
+						<th>Auffindbarkeit (SEO)</th>
+						<td>[lighthouse.seo.desktop]/100</td>
+						<td>[lighthouse.seo.mobile]/100</td>
+						<td>Ob die technischen Grundlagen stimmen, damit Suchmaschinen wie Google deine Seite lesen und anzeigen können, zum Beispiel Seitentitel und Beschreibung. Der Wert sagt nicht, auf welchem Platz du bei Google erscheinst.</td>
+					</tr>
+
+					<tr>
+						<th>Letzte Messung</th>
+						<td>[lighthouse.lastcheck.desktop]</td>
+						<td>[lighthouse.lastcheck.mobile]</td>
+						<td>Wann der Test zuletzt gelaufen ist.</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</section>
+
+		[/config-section-data]
+
+		<?php endif; ?>
+
+
+
+
+
+
+		<?php if ($isModuleActiveUptime): ?>
 		[config-section-data]
 		[config-section-extra max-empty="4" /]
-		<?= $get_config_token('uptime') ?>
+		<?= $printSectionVisibility('uptime') ?>
 		<section aria-labelledby="uptime-ratio">
 			<div class="flow section-heading-spacer">
 				<h2 id="uptime-ratio">Erreichbarkeitsquote</h2>
@@ -361,10 +549,6 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 					<tr>
 						<th>Insgesamt bisher</th>
 						<td>[aum.alltimeuptimeratio]</td>
-					</tr>
-					<tr>
-						<th>Letzte Woche</th>
-						<td>[aum.uptime7]</td>
 					</tr>
 					<tr>
 						<th>Letzten Monat</th>
@@ -380,7 +564,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		[/config-section-data]
 		<?php endif; ?>
 		[config-section-data]
-		<?= $get_config_token('wp-update') ?>
+		<?= $printSectionVisibility('wp-update') ?>
 		<section aria-labelledby="wp-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="wp-updates">WordPress Core-Updates</h2>
@@ -407,7 +591,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		</section>
 		[/config-section-data]
 		[config-section-data]
-		<?= $get_config_token('themes-updates') ?>
+		<?= $printSectionVisibility('themes-updates') ?>
 		<section aria-labelledby="themes-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="themes-updates">Theme-Updates</h2>
@@ -436,7 +620,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		</section>
 		[/config-section-data]
 		[config-section-data]
-		<?= $get_config_token('plugins-updates') ?>
+		<?= $printSectionVisibility('plugins-updates') ?>
 		<section aria-labelledby="plugins-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="plugins-updates">Plugin-Updates</h2>
@@ -464,9 +648,9 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 			</table>
 		</section>
 		[/config-section-data]
-		<?php if ($is_plugin_active_maintenance): ?>
+		<?php if ($isModuleActiveMaintenance): ?>
 		[config-section-data]
-		<?= $get_config_token('maintenance') ?>
+		<?= $printSectionVisibility('maintenance') ?>
 		<section aria-labelledby="cleanup-tasks">
 			<div class="flow section-heading-spacer">
 				<h2 id="cleanup-tasks">Cleanup-Routinen</h2>
@@ -491,9 +675,9 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		</section>
 		[/config-section-data]
 		<?php endif; ?>
-		<?php if ($is_plugin_active_backups): ?>
+		<?php if ($isModuleActiveBackups): ?>
 		[config-section-data]
-		<?= $get_config_token('backups') ?>
+		<?= $printSectionVisibility('backups') ?>
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
 				<h2 id="backups">Backups</h2>
@@ -519,7 +703,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		[/config-section-data]
 		<?php endif; ?>
 		[config-section-data]
-		<?= $get_config_token('users') ?>
+		<?= $printSectionVisibility('users') ?>
 		<section aria-labelledby="added-users">
 			<h2 id="added-users" class="section-heading-spacer">Neu hinzugefügte Nutzer</h2>
 			<table>
@@ -543,7 +727,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		</section>
 		[/config-section-data]
 		[config-section-data]
-		<?= $get_config_token('users') ?>
+		<?= $printSectionVisibility('users') ?>
 		<section aria-labelledby="updated-users">
 			<h2 id="updated-users" class="section-heading-spacer">Aktualisierte Nutzer</h2>
 			<table>
@@ -567,7 +751,7 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 		</section>
 		[/config-section-data]
 		[config-section-data]
-		<?= $get_config_token('users') ?>
+		<?= $printSectionVisibility('users') ?>
 		<section aria-labelledby="deleted-users">
 			<h2 id="deleted-users" class="section-heading-spacer">Gelöschte Nutzer</h2>
 			<table>
@@ -590,110 +774,6 @@ $report_intro_support_email = 'edgar@edgarbollow.com';
 			</table>
 		</section>
 		[/config-section-data]
-		<?php if ($is_plugin_active_analytics): ?>
-		[config-section-data]
-		[config-section-extra max-empty="7" /]
-		<?= $get_config_token('ga') ?>
-		<section aria-labelledby="analytics">
-			<div class="flow section-heading-spacer">
-				<h2 id="analytics">Analytics</h2>
-				<p>Google Analytics ist ein Analysetool, das Daten über die Website-Besucher erfasst. So erhältst du wertvolle Einblicke in das Nutzerverhalten auf der Website.</p>
-			</div>
-			<table class="section-heading-spacer">
-				<tbody>
-					<tr>
-						<th style="width: 30%;">Besuche</th>
-						<td>[ga.visits]</td>
-						<td class="table-column-size--1-2">Ein Besuch zählt jedes Mal, wenn ein Nutzer die Website betritt, unabhängig davon, wie viele Seiten er sich anschaut. Ein Besuch beginnt, wenn ein Nutzer auf die Seite kommt, und endet, wenn er sie verlässt oder 30 Minuten lang inaktiv war.</td>
-					</tr>
-					<tr>
-						<th>Neue Besuche</th>
-						<td>[ga.new.visits]</td>
-						<td>Dieser Prozentsatz spiegelt die Anzahl der Besuche wieder, die von neuen Nutzern stammen. Das sind Besucher, die zum ersten Mal auf der Website sind und nicht von einem vorherigen Besuch stammen.</td>
-					</tr>
-					<tr>
-						<th>Besuchszeit</th>
-						<td>[ga.avg.time]</td>
-						<td>Die Besuchszeit misst, wie lange ein Nutzer im Durchschnitt auf der Website bleibt, bevor er sie verlässt.</td>
-					</tr>
-					<tr>
-						<th>Seitenaufrufe pro Besuch</th>
-						<td>[ga.pages.visit]</td>
-						<td>Diese Zahl zeigt, wie viele Seiten ein Nutzer im Durchschnitt während eines einzigen Besuchs auf der Website aufruft.</td>
-					</tr>
-					<tr>
-						<th>Absprungrate</th>
-						<td>[ga.bounce.rate]</td>
-						<td>Die Absprungrate gibt den Prozentsatz der Besuche an, bei denen ein Nutzer nur eine einzige Seite auf der Website aufgerufen hat und sie dann ohne weitere Interaktionen wieder verlassen hat.</td>
-					</tr>
-					<tr>
-						<th>Seitenaufrufe</th>
-						<td>[ga.pageviews]</td>
-						<td>Seitenaufrufe zählen jedes Mal, wenn eine Seite der Website angesehen wird, unabhängig davon, ob der Nutzer sie schon zuvor während derselben Sitzung (Besuch) besucht hat. Wenn ein Nutzer während eines Besuchs mehrere Seiten aufruft, zählt jede dieser Seiten als ein eigener Seitenaufruf.</td>
-					</tr>
-				</tbody>
-			</table>
-			<figure>
-				[ga.visits.chart]
-				<figcaption>Website-Besuche des aktuellen Zeitraums grafisch dargestellt</figcaption>
-			</figure>
-		</section>
-		[/config-section-data]
-		<?php endif; ?>
-		<?php if ($is_plugin_active_lighthouse): ?>
-		[config-section-data]
-		[config-section-extra max-empty="10" /]
-		<?= $get_config_token('lighthouse') ?>
-		<section aria-labelledby="performance">
-			<div class="flow section-heading-spacer">
-				<h2 id="performance">Performance</h2>
-				<p>Dies sind die Ergebnisse der regelmäßigen Leistungstests der Website, die mit dem Tool <a href="https://pagespeed.web.dev" rel="external">Google Lighthouse</a> durchgeführt wurden. Die Werte geben Einblicke in verschiedene Aspekte der Website-Performance auf Desktop- und Mobilgeräten.</p>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th class="th" style="width: 30%;"></th>
-						<th class="th">Desktop</th>
-						<th class="th">Mobile</th>
-						<th class="th" style="width: 30%;">Anmerkung</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Geschwindigkeit</th>
-						<td>[lighthouse.performance.desktop] / 100</td>
-						<td>[lighthouse.performance.mobile] / 100</td>
-						<td>Die Geschwindigkeit bewertet die Ladezeit und Reaktionsfähigkeit der Website.</td>
-					</tr>
-					<tr>
-						<th>Barrierefreiheit</th>
-						<td>[lighthouse.accessibility.desktop] / 100</td>
-						<td>[lighthouse.accessibility.mobile] / 100</td>
-						<td>Barrierefreiheit bedeutet, wie gut die Website für alle Benutzer zugänglich ist, einschließlich Menschen mit Behinderungen.</td>
-					</tr>
-					<tr>
-						<th>Best Practices</th>
-						<td>[lighthouse.bestpractices.desktop] / 100</td>
-						<td>[lighthouse.bestpractices.mobile] / 100</td>
-						<td>Dieser Score misst, ob die Website bewährte Webstandards einhält.</td>
-					</tr>
-					<tr>
-						<th>SEO</th>
-						<td>[lighthouse.seo.desktop] / 100</td>
-						<td>[lighthouse.seo.mobile] / 100</td>
-						<td>SEO (Suchmaschinenoptimierung) zeigt, wie gut die Website auf Suchmaschinen wie Google sichtbar ist.</td>
-					</tr>
-					<tr>
-						<th>Zeitpunkt der Messung</th>
-						<td>[lighthouse.lastcheck.desktop]</td>
-						<td>[lighthouse.lastcheck.mobile]</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-		[/config-section-data]
-		<?php endif; ?>
 	</main>
 </body>
 </html>
