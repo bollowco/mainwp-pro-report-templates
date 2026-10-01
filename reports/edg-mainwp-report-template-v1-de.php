@@ -562,6 +562,45 @@ $supportMessagingId = 'bollowco';
 
 		<?php endif; ?>
 
+		<?php if ($isModuleActiveMaintenance): ?>
+
+		[config-section-data]
+		<?= $printSectionVisibility('maintenance') ?>
+
+		<section aria-labelledby="database-cleanups">
+			<div class="flow section-heading-spacer">
+				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
+				<p>Deine Website speichert Texte, Seiten, Kommentare und Einstellungen in einer Datenbank. Dort sammeln sich mit der Zeit Reste an, die niemand mehr braucht, zum Beispiel Spam-Kommentare oder veraltete Zwischenspeicher-Einträge. Sie werden regelmäßig automatisch entfernt. Hier siehst du, wann das zuletzt passiert ist.</p>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th class="th table-column-size--1-4">Zeitpunkt</th>
+						<th class="th">Was passiert ist</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					[section.maintenance.process]
+					<tr>
+						<td>[maintenance.process.date]</td>
+						<td>[maintenance.process.details]</td>
+					</tr>
+					[/section.maintenance.process]
+
+				</tbody>
+			</table>
+		</section>
+
+		[/config-section-data]
+
+		<?php endif; ?>
+
+
+
+
+
+
 
 	
 		[config-section-data]
@@ -649,33 +688,7 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 		[/config-section-data]
-		<?php if ($isModuleActiveMaintenance): ?>
-		[config-section-data]
-		<?= $printSectionVisibility('maintenance') ?>
-		<section aria-labelledby="cleanup-tasks">
-			<div class="flow section-heading-spacer">
-				<h2 id="cleanup-tasks">Cleanup-Routinen</h2>
-				<p>Diese Routinewartungen sorgen dafür, dass die Datenbank der Website aufgeräumt bleibt und reibungslos funktioniert, indem unnötige oder veraltete Daten entfernt werden.</p>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th class="th table-column-size--1-4">Zeitpunkt</th>
-						<th class="th">Details</th>
-					</tr>
-				</thead>
-				<tbody>
-					[section.maintenance.process]
-					<tr>
-						<td>[maintenance.process.date]</td>
-						<td>[maintenance.process.details]</td>
-					</tr>
-					[/section.maintenance.process]
-				</tbody>
-			</table>
-		</section>
-		[/config-section-data]
-		<?php endif; ?>
+
 		<?php if ($isModuleActiveBackups): ?>
 		[config-section-data]
 		<?= $printSectionVisibility('backups') ?>
