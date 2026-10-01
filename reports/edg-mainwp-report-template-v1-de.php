@@ -530,39 +530,40 @@ $supportMessagingId = 'bollowco';
 
 		<?php endif; ?>
 
-
-
-
-
-
 		<?php if ($isModuleActiveUptime): ?>
+
 		[config-section-data]
-		[config-section-extra max-empty="4" /]
+		[config-section-extra max-empty="2" /]
 		<?= $printSectionVisibility('uptime') ?>
-		<section aria-labelledby="uptime-ratio">
+
+		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
-				<h2 id="uptime-ratio">Erreichbarkeitsquote</h2>
-				<p>Die Erreichbarkeitsquote gibt an, wie oft die Website im Laufe des aktuellen Zeitraums verfügbar war. Eine Erreichbarkeit von z. B. 98 % bedeutet, dass die Website in 98 % der Zeit ohne Probleme online und erreichbar gewesen ist.</p>
+				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
+				<p>Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9 % entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99 % rund 7 Stunden.</p>
 			</div>
 			<table>
 				<tbody>
+
 					<tr>
-						<th>Insgesamt bisher</th>
-						<td>[aum.alltimeuptimeratio]</td>
-					</tr>
-					<tr>
-						<th>Letzten Monat</th>
+						<th>Letzte 30 Tage</th>
 						<td>[aum.uptime30]</td>
 					</tr>
+
 					<tr>
-						<th>Letzten 2 Monate</th>
-						<td>[aum.uptime60]</td>
+						<th>Seit Beginn der Überwachung</th>
+						<td>[aum.alltimeuptimeratio]</td>
 					</tr>
+
 				</tbody>
 			</table>
 		</section>
+
 		[/config-section-data]
+
 		<?php endif; ?>
+
+
+	
 		[config-section-data]
 		<?= $printSectionVisibility('wp-update') ?>
 		<section aria-labelledby="wp-updates">
