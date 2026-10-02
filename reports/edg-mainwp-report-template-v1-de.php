@@ -64,7 +64,7 @@ $supportMessagingId = 'bollowco';
 			color: #212121;
 			background-color: #fff;
 			font-family: ui-sans-serif, system-ui, sans-serif;
-			font-size: 1rem;
+			font-size: .8125rem;
 			font-weight: 400;
 			line-height: 1.5;
 			overflow-wrap: break-word;
@@ -88,8 +88,9 @@ $supportMessagingId = 'bollowco';
 		}
 
 		a {
-			color: inherit;
-			text-decoration: none;
+			color: #1b4768;
+			text-decoration: underline;
+			text-decoration-thickness: clamp(1px, .0625em, .0625em);
 			touch-action: manipulation;
 		}
 
@@ -120,26 +121,20 @@ $supportMessagingId = 'bollowco';
 		}
 
 		h1 {
-			font-size: 2.4883rem;
-			line-height: 1.2261;
-			letter-spacing: -.015em;
+			font-size: 2.25rem;
+			line-height: 1.2;
+			letter-spacing: -.01em;
 		}
 
 		h2 {
-			font-size: 1.728rem;
-			line-height: 1.3617;
-			letter-spacing: -.0075em;
+			font-size: 1.5rem;
+			line-height: 1.3;
+			letter-spacing: -.00875em;
 		}
 
 		strong {
 			color: #000;
 			font-weight: 700;
-		}
-
-		a {
-			color: #1b4768;
-			text-decoration: underline;
-			text-decoration-thickness: clamp(1px, .0625em, .0625em);
 		}
 
 		table {
@@ -148,8 +143,8 @@ $supportMessagingId = 'bollowco';
 			overflow: clip;
 			overflow: hidden;
 			background-color: #fff;
-			font-size: .875rem;
-			line-height: 1.4286;
+			font-size: .6875rem;
+			line-height: 1.3;
 		}
 
 		.th {
@@ -202,13 +197,17 @@ $supportMessagingId = 'bollowco';
 			padding-top: 1.25rem;
 			border-top-width: 1px;
 			color: #717171;
-			font-size: .875rem;
-			line-height: 1.7143;
+			font-size: .6875rem;
+			line-height: 1.3;
 			font-style: italic;
 		}
 
 		.flow {
 			--_spacer: 1.25em;
+		}
+
+		.flow--wide {
+			--_spacer: 3.75rem;
 		}
 
 		.flow > * + * {
@@ -228,13 +227,12 @@ $supportMessagingId = 'bollowco';
 			page-break-after: always;
 		}
 
-		.text-size--xl {
-			font-size: 1.1875rem;
-			line-height: 1.5263;
-		}
-
 		.table-column-size--1-4 {
 			width: 25%;
+		}
+
+		.table-column-size--30 {
+			width: 30%;
 		}
 
 		.table-column-size--1-2 {
@@ -243,32 +241,32 @@ $supportMessagingId = 'bollowco';
 	</style>
 </head>
 <body>
-	<main class="flow" style="--_spacer: 3.75rem;">
+	<main class="flow flow--wide">
 
 		<header>
 			<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ijg4LjM2IDY5IDgyMy43MiAxMTIiPjxsaW5lYXJHcmFkaWVudCBpZD0iQSIgeDE9IjE2Mi42NTIiIHkxPSIxNzAuODI1IiB4Mj0iMTA4LjgyOCIgeTI9Ijc5LjA2NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjAwNCIgc3RvcC1jb2xvcj0iIzFiNDc2OCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVkOWFjOSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzViOTljOSIvPjwvbGluZWFyR3JhZGllbnQ+PGcgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSJ1cmwoI0EpIiBkPSJNMTMxLjYgMTgxSDg4LjM2NFY2OWw0My4yMzYuMDU5djE5LjMwOGwtMjAuNzU5LjA4NXYyNC42OTVsMjAuNzU5LjA0NXYxOC4zODlsLTIwLjc1OS4xMDZ2MjkuODYybDIwLjc1OS0uMDg2em00LjA4Ny0xOS41MzhsMy42OS4wODZjNC45NDQgMCA4Ljc5Mi0uNjU5IDExLjU0NC0xLjk3NiA0Ljk5NS0yLjQzMiA3LjQ5Mi03LjA5MiA3LjQ5Mi0xMy45ODEgMC01LjgyNS0yLjQyMS05LjgyNy03LjI2My0xMi4wMDUtMi43MDEtMS4yMTYtNi40OTgtMS44NDktMTEuMzkxLTEuOWwtNC4wNzItLjEwNnYtMTguMzg5bDMuNjktLjA0NWM0Ljk0NCAwIDguOTctLjkzNyAxMi4wNzktMi44MTFoMGMzLjA1OC0xLjgyNCA0LjU4Ny01LjA5MSA0LjU4Ny05LjgwMiAwLTUuMjE4LTIuMDM5LTguNjYyLTYuMTE2LTEwLjMzNC0zLjUxNy0xLjE2NS04LjAwMi0xLjc0OC0xMy40NTYtMS43NDhsLS43ODUtLjA4NVY2OS4wNTlsOC4yNzctLjA1OWMxMy44MTIuMjAzIDIzLjU5OCA0LjE3OSAyOS4zNTggMTEuOTI5IDMuNDY2IDQuNzYyIDUuMTk5IDEwLjQ2IDUuMTk5IDE3LjA5NiAwIDYuODM5LTEuNzMzIDEyLjMzNS01LjE5OSAxNi40ODgtMS45MzcgMi4zMy00Ljc5MSA0LjQ1OC04LjU2MyA2LjM4MyA1Ljc1OSAyLjA3NyAxMC4xMDQgNS4zNjkgMTMuMDM1IDkuODc4czQuMzk2IDkuOTc5IDQuMzk2IDE2LjQxMmMwIDYuNjM2LTEuNjgyIDEyLjU4OC01LjA0NiAxNy44NTYtMi4xNDEgMy40OTUtNC44MTYgNi40MzMtOC4wMjcgOC44MTQtMy42MTkgMi43MzUtNy44ODcgNC42MS0xMi44MDYgNS42MjNTMTQ2LjA1NCAxODEgMTQwLjI5NCAxODFoLTQuNjA4eiIvPjxwYXRoIGQ9Ik04ODQuOCAxNTJoMTIuMDhsMTUuMi01My4zNmgtMTIuOEw4OTAgMTM3LjJsLTEwLjA4LTM4LjU2aC04Ljg4bC0xMC4xNiAzOC41Ni05LjM2LTM4LjU2SDgzOC44TDg1NC4wOCAxNTJoMTIuMDhsOS4yOC0zNi42NHptLTEwOC41Ni0yNi42NGMwIDE2LjA4IDExLjc2IDI3LjYgMjcuODQgMjcuNiAxNi4xNiAwIDI3LjkyLTExLjUyIDI3LjkyLTI3LjZzLTExLjc2LTI3LjYtMjcuOTItMjcuNmMtMTYuMDggMC0yNy44NCAxMS41Mi0yNy44NCAyNy42em00NC4wOCAwYzAgOS45Mi02LjQgMTcuNTItMTYuMjQgMTcuNTJzLTE2LjE2LTcuNi0xNi4xNi0xNy41MmMwLTEwIDYuMzItMTcuNTIgMTYuMTYtMTcuNTJzMTYuMjQgNy41MiAxNi4yNCAxNy41MnpNNzMzLjUyIDE1MmgzMy45MnYtMTBoLTIyLjU2Vjk4LjY0aC0xMS4zNnptLTQ3LjQ0IDBINzIwdi0xMGgtMjIuNTZWOTguNjRoLTExLjM2em0tNjkuMzYtMjYuNjRjMCAxNi4wOCAxMS43NiAyNy42IDI3Ljg0IDI3LjYgMTYuMTYgMCAyNy45Mi0xMS41MiAyNy45Mi0yNy42cy0xMS43Ni0yNy42LTI3LjkyLTI3LjZjLTE2LjA4IDAtMjcuODQgMTEuNTItMjcuODQgMjcuNnptNDQuMDggMGMwIDkuOTItNi40IDE3LjUyLTE2LjI0IDE3LjUycy0xNi4xNi03LjYtMTYuMTYtMTcuNTJjMC0xMCA2LjMyLTE3LjUyIDE2LjE2LTE3LjUyczE2LjI0IDcuNTIgMTYuMjQgMTcuNTJ6TTU2MC42NCAxNTJoMjguOTZjMTAuMTYgMCAxNS41Mi02LjQgMTUuNTItMTQuNCAwLTYuNzItNC41Ni0xMi4yNC0xMC4yNC0xMy4xMiA1LjA0LTEuMDQgOS4yLTUuNTIgOS4yLTEyLjI0IDAtNy4xMi01LjItMTMuNi0xNS4zNi0xMy42aC0yOC4wOHpNNTcyIDEyMC4wOHYtMTEuNzZoMTQuMjRjMy44NCAwIDYuMjQgMi41NiA2LjI0IDUuODQgMCAzLjQ0LTIuNCA1LjkyLTYuMjQgNS45MnptMCAyMi4yNHYtMTIuNTZoMTQuNjRjNC40OCAwIDYuODggMi44OCA2Ljg4IDYuMjQgMCAzLjg0LTIuNTYgNi4zMi02Ljg4IDYuMzJ6TTUwNy42OCAxNTJoMTMuMDRsLTEyLTIwLjMyYzUuNzYtMS4zNiAxMS42OC02LjQgMTEuNjgtMTUuODQgMC05LjkyLTYuOC0xNy4yLTE3LjkyLTE3LjJoLTI0Ljk2VjE1MmgxMS4zNnYtMTkuMTJoOC4zMnptMS4xMi0zNi4yNGMwIDQuNDgtMy40NCA3LjM2LTggNy4zNmgtMTEuOTJWMTA4LjRoMTEuOTJjNC41NiAwIDggMi44OCA4IDcuMzZ6TTQ1NC41NiAxNTJoMTIuNEw0NDYuNCA5OC42NGgtMTQuMjRMNDExLjUyIDE1Mkg0MjRsMy4zNi05LjJoMjMuODR6bS0xNS4yOC00My41Mmw4LjggMjQuNDhINDMwLjR6TTM1MiAxMjUuMzZjMCAxNi44IDEyLjggMjcuNjggMjguNCAyNy42OCA5LjY4IDAgMTcuMjgtNCAyMi43Mi0xMC4wOHYtMjAuNGgtMjUuNDR2OS43NmgxNC4yNHY2LjQ4Yy0yLjMyIDIuMDgtNi42NCA0LjA4LTExLjUyIDQuMDgtOS42OCAwLTE2LjcyLTcuNDQtMTYuNzItMTcuNTJzNy4wNC0xNy41MiAxNi43Mi0xNy41MmM1LjYgMCAxMC4xNiAyLjk2IDEyLjY0IDYuNzJsOS40NC01LjEyYy00LjA4LTYuMzItMTEuMDQtMTEuNjgtMjIuMDgtMTEuNjgtMTUuNiAwLTI4LjQgMTAuNzItMjguNCAyNy42ek0yOTEuNTIgMTUyaDIxLjA0YzE2LjcyIDAgMjguMzItMTAuNTYgMjguMzItMjYuNjRzLTExLjYtMjYuNzItMjguMzItMjYuNzJoLTIxLjA0em0xMS4zNi0xMHYtMzMuMzZoOS42OGMxMC45NiAwIDE2LjcyIDcuMjggMTYuNzIgMTYuNzIgMCA5LjA0LTYuMTYgMTYuNjQtMTYuNzIgMTYuNjR6bS02My42IDEwaDM3Ljc2di05Ljg0aC0yNi40di0xMi40aDI1Ljg0VjEyMGgtMjUuODR2LTExLjZoMjYuNHYtOS43NmgtMzcuNzZ6Ii8+PC9nPjwvc3ZnPg==" alt="Logo von Edgar Bollow">
 		</header>
 
-		<section class="flow" aria-labelledby="report-title">
+		<section aria-labelledby="report-title" class="flow">
 			<h1 id="report-title"><?= esc_html($reportTitle) ?></h1>
-			<div class="flow text-size--xl">
+			<div class="flow">
 				<p>Im Rahmen unserer Vereinbarung betreue ich deine Website <strong>[client.site.name]</strong>. Vielen Dank für dein Vertrauen.</p>
 				<p>In diesem Bericht erhältst du eine Zusammenfassung des Zustands deiner Website und der im Zeitraum vom <strong>[report.daterange]</strong> erbrachten Wartungsarbeiten.</p>
 				<p>Falls du Hilfe benötigst oder Fragen hast, schreib mir gerne eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
 			</div>
 		</section>
 
-		<section class="page-break" aria-label="Übersicht">
+		<section aria-label="Übersicht" class="page-break">
 			<table>
 				<tbody>
 
 					<tr>
-						<th>Website</th>
+						<th scope="row">Website</th>
 						<td><a href="[client.site.url]" rel="external">[client.site.name]</a></td>
 					</tr>
 
 					<tr>
-						<th>Zeitraum</th>
+						<th scope="row">Zeitraum</th>
 						<td>[report.daterange]</td>
 					</tr>
 
@@ -279,7 +277,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('ga') ?>
 
 					<tr>
-						<th>Besucher</th>
+						<th scope="row">Besucher</th>
 						<td>[ga.visits]</td>
 					</tr>
 
@@ -294,11 +292,11 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('lighthouse') ?>
 
 					<tr>
-						<th>Geschwindigkeit: Computer</th>
+						<th scope="row">Geschwindigkeit: Computer</th>
 						<td>[lighthouse.performance.desktop]/100</td>
 					</tr>
 					<tr>
-						<th>Geschwindigkeit: Handy</th>
+						<th scope="row">Geschwindigkeit: Handy</th>
 						<td>[lighthouse.performance.mobile]/100</td>
 					</tr>
 
@@ -313,7 +311,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('uptime') ?>
 
 					<tr>
-						<th>Verfügbarkeit</th>
+						<th scope="row">Verfügbarkeit</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
@@ -328,7 +326,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('maintenance') ?>
 
 					<tr>
-						<th>Datenbankbereinigungen</th>
+						<th scope="row">Datenbankbereinigungen</th>
 						<td>[maintenance.process.count]</td>
 					</tr>
 
@@ -337,12 +335,23 @@ $supportMessagingId = 'bollowco';
 					<?php endif; ?>
 
 					<tr>
-						<th>PHP-Version</th>
+						<th scope="row">PHP-Version</th>
 						<td>[client.site.php]</td>
 					</tr>
+
 					<tr>
-						<th>WordPress-Version</th>
+						<th scope="row">Datenbankversion</th>
+						<td>[client.site.mysql]</td>
+					</tr>
+
+					<tr>
+						<th scope="row">WordPress-Version</th>
 						<td>[client.site.version]</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Aktives Theme</th>
+						<td>[client.site.theme]</td>
 					</tr>
 
 					[config-section-data]
@@ -350,7 +359,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('wp-update') ?>
 
 					<tr>
-						<th>Updates: WordPress</th>
+						<th scope="row">Updates: WordPress</th>
 						<td>[wordpress.updated.count]</td>
 					</tr>
 
@@ -361,7 +370,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('themes-updates') ?>
 
 					<tr>
-						<th>Updates: Themes</th>
+						<th scope="row">Updates: Themes</th>
 						<td>[theme.updated.count]</td>
 					</tr>
 
@@ -372,7 +381,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('plugins-updates') ?>
 
 					<tr>
-						<th>Updates: Plugins</th>
+						<th scope="row">Updates: Plugins</th>
 						<td>[plugin.updated.count]</td>
 					</tr>
 
@@ -385,7 +394,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('backups') ?>
 
 					<tr>
-						<th>Backups</th>
+						<th scope="row">Erstellte Backups</th>
 						<td>[backup.created.count]</td>
 					</tr>
 
@@ -412,43 +421,43 @@ $supportMessagingId = 'bollowco';
 				<tbody>
 
 					<tr>
-						<th style="width: 30%;">Besuche</th>
+						<th scope="row" class="table-column-size--30">Besuche</th>
 						<td>[ga.visits]</td>
 						<td class="table-column-size--1-2">Wie oft deine Website in diesem Zeitraum aufgerufen wurde. Ein Besuch endet nach 30 Minuten ohne Aktivität. Kommt dieselbe Person an zwei Tagen vorbei, sind das zwei Besuche – die Zahl entspricht also nicht der Anzahl der Personen.</td>
 					</tr>
 
 					<tr>
-						<th>Besucherstärkster Tag</th>
+						<th scope="row">Besucherstärkster Tag</th>
 						<td>[ga.visits.maximum]</td>
 						<td>Der Tag mit den meisten Besuchen im zurückliegenden Monat, samt Anzahl. Auffällige Spitzen haben meist einen Anlass, zum Beispiel einen Newsletter, einen Social-Media-Beitrag oder eine Pressemeldung.</td>
 					</tr>
 
 					<tr>
-						<th>Neue Besuche</th>
+						<th scope="row">Neue Besuche</th>
 						<td>[ga.new.visits]</td>
 						<td>Der Anteil der Besuche von Personen, die zum ersten Mal auf deiner Website waren. Der Rest sind Besucher, die zurückkehren. Beides ist wichtig: Neue Besuche zeigen, dass du gefunden wirst, wiederkehrende, dass deine Seite überzeugt. Wer ein anderes Gerät nutzt oder seine Cookies gelöscht hat, zählt erneut als neu.</td>
 					</tr>
 
 					<tr>
-						<th>Seitenaufrufe</th>
+						<th scope="row">Seitenaufrufe</th>
 						<td>[ga.pageviews]</td>
 						<td>Wie oft insgesamt eine Seite angezeigt wurde. Sieht sich jemand Startseite, Leistungen und Kontaktseite an, sind das 3 Seitenaufrufe, aber nur 1 Besuch. Auch das erneute Laden einer Seite zählt mit.</td>
 					</tr>
 
 					<tr>
-						<th>Seiten pro Besuch</th>
+						<th scope="row">Seiten pro Besuch</th>
 						<td>[ga.pages.visit]</td>
 						<td>Wie viele Seiten sich Besucher pro Besuch im Durchschnitt ansehen (Seitenaufrufe geteilt durch Besuche). Ein Wert von 1,0 bedeutet: Es wurde meist nur eine Seite angesehen. Bei 3,0 stöbern Besucher auf mehreren Seiten. Bei kleinen Websites sind niedrige Werte normal, wenn jemand nur eine bestimmte Information sucht, zum Beispiel die Öffnungszeiten.</td>
 					</tr>
 
 					<tr>
-						<th>Besuchszeit</th>
+						<th scope="row">Besuchszeit</th>
 						<td>[ga.avg.time]</td>
 						<td>Wie lange sich Besucher pro Besuch im Durchschnitt aktiv auf deiner Website aufhalten, angegeben als Stunden:Minuten:Sekunden. Ein Wert von 0:02:05 bedeutet 2 Minuten und 5 Sekunden. Kurze Zeiten sind nicht automatisch schlecht: Wer nur die Telefonnummer sucht, hat sie nach 20 Sekunden gefunden und ist zufrieden.</td>
 					</tr>
 
 					<tr>
-						<th>Absprungrate</th>
+						<th scope="row">Absprungrate</th>
 						<td>[ga.bounce.rate]</td>
 						<td>Der Anteil der Besuche, bei denen sich jemand nur ganz kurz umgesehen hat: weniger als 10 Sekunden, keine zweite Seite aufgerufen und nichts ausgelöst (zum Beispiel keine Anfrage gesendet). Ein niedriger Wert ist besser. Er sagt aber nicht, ob jemand gefunden hat, was er suchte: Wer in wenigen Sekunden eine Telefonnummer abliest und anruft, zählt ebenfalls als Absprung.</td>
 					</tr>
@@ -479,44 +488,44 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th class="th" style="width: 30%;"></th>
-						<th class="th">Computer</th>
-						<th class="th">Handy</th>
-						<th class="th" style="width: 30%;">Was bedeutet das?</th>
+						<th scope="col" aria-hidden="true" class="th table-column-size--30"></th>
+						<th scope="col" class="th">Computer</th>
+						<th scope="col" class="th">Handy</th>
+						<th scope="col" class="th table-column-size--30">Was bedeutet das?</th>
 					</tr>
 				</thead>
 				<tbody>
 
 					<tr>
-						<th>Geschwindigkeit</th>
+						<th scope="row">Geschwindigkeit</th>
 						<td>[lighthouse.performance.desktop]/100</td>
 						<td>[lighthouse.performance.mobile]/100</td>
 						<td>Wie schnell deine Seite lädt, wie schnell sie auf Klicks reagiert und ob beim Laden nichts verrutscht. Je höher der Wert, desto weniger müssen Besucher warten.</td>
 					</tr>
 
 					<tr>
-						<th>Barrierefreiheit</th>
+						<th scope="row">Barrierefreiheit</th>
 						<td>[lighthouse.accessibility.desktop]/100</td>
 						<td>[lighthouse.accessibility.mobile]/100</td>
 						<td>Wie gut deine Seite für alle nutzbar ist, auch für Menschen mit Einschränkungen, etwa beim Sehen. Geprüft werden zum Beispiel Farbkontraste, Bildbeschreibungen und beschriftete Formularfelder. Der Test erkennt nur einen Teil möglicher Hürden, 100 Punkte heißen also nicht, dass alles perfekt ist.</td>
 					</tr>
 
 					<tr>
-						<th>Technische Qualität</th>
+						<th scope="row">Technische Qualität</th>
 						<td>[lighthouse.bestpractices.desktop]/100</td>
 						<td>[lighthouse.bestpractices.mobile]/100</td>
 						<td>Ob deine Seite nach aktuellen technischen Standards gebaut ist, zum Beispiel mit verschlüsselter Verbindung (HTTPS) und ohne versteckte Fehlermeldungen im Hintergrund.</td>
 					</tr>
 
 					<tr>
-						<th>Auffindbarkeit (SEO)</th>
+						<th scope="row">Auffindbarkeit (SEO)</th>
 						<td>[lighthouse.seo.desktop]/100</td>
 						<td>[lighthouse.seo.mobile]/100</td>
 						<td>Ob die technischen Grundlagen stimmen, damit Suchmaschinen wie Google deine Seite lesen und anzeigen können, zum Beispiel Seitentitel und Beschreibung. Der Wert sagt nicht, auf welchem Platz du bei Google erscheinst.</td>
 					</tr>
 
 					<tr>
-						<th>Letzte Messung</th>
+						<th scope="row">Letzte Messung</th>
 						<td>[lighthouse.lastcheck.desktop]</td>
 						<td>[lighthouse.lastcheck.mobile]</td>
 						<td>Wann der Test zuletzt gelaufen ist.</td>
@@ -539,18 +548,18 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
 				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
-				<p>Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9 % entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99 % rund 7 Stunden.</p>
+				<p>Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&#8239;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&#8239;% rund 7 Stunden.</p>
 			</div>
 			<table>
 				<tbody>
 
 					<tr>
-						<th>Letzte 30 Tage</th>
+						<th scope="row">Letzte 30 Tage</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
 					<tr>
-						<th>Seit Beginn der Überwachung</th>
+						<th scope="row">Seit Beginn der Überwachung</th>
 						<td>[aum.alltimeuptimeratio]</td>
 					</tr>
 
@@ -575,17 +584,19 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th class="th table-column-size--1-4">Zeitpunkt</th>
-						<th class="th">Was passiert ist</th>
+						<th scope="col" class="th table-column-size--1-4">Zeitpunkt</th>
+						<th scope="col" class="th">Was passiert ist</th>
 					</tr>
 				</thead>
 				<tbody>
 
 					[section.maintenance.process]
+
 					<tr>
 						<td>[maintenance.process.date]</td>
 						<td>[maintenance.process.details]</td>
 					</tr>
+
 					[/section.maintenance.process]
 
 				</tbody>
@@ -595,199 +606,232 @@ $supportMessagingId = 'bollowco';
 		[/config-section-data]
 
 		<?php endif; ?>
-
-
-
-
-
-
-
 	
 		[config-section-data]
 		<?= $printSectionVisibility('wp-update') ?>
-		<section aria-labelledby="wp-updates">
+
+		<section aria-labelledby="wordpress-updates">
 			<div class="flow section-heading-spacer">
-				<h2 id="wp-updates">WordPress Core-Updates</h2>
-				<p>WordPress ist die Basis-Software, die die Website antreibt. Regelmäßige Updates halten sie sicher und auf dem neuesten Stand.</p>
+				<h2 id="wordpress-updates">WordPress-Updates</h2>
+				<p>WordPress ist die Software, auf der deine Website läuft. Mit Updates werden Sicherheitslücken geschlossen und Fehler behoben. Die Tabelle zeigt, wann von welcher auf welche Version aktualisiert wurde (höhere Zahl = neuere Version).</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th class="th">Zeitpunkt</th>
-						<th class="th">Alte Version</th>
-						<th class="th">Aktuelle Version</th>
+						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Alte Version</th>
+						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
 				</thead>
 				<tbody>
+
 					[section.wordpress.updated]
+
 					<tr>
 						<td>[wordpress.updated.date]</td>
 						<td>[wordpress.old.version]</td>
 						<td>[wordpress.current.version]</td>
 					</tr>
+
 					[/section.wordpress.updated]
+
 				</tbody>
 			</table>
 		</section>
+
 		[/config-section-data]
+
 		[config-section-data]
 		<?= $printSectionVisibility('themes-updates') ?>
-		<section aria-labelledby="themes-updates">
+
+		<section aria-labelledby="theme-updates">
 			<div class="flow section-heading-spacer">
-				<h2 id="themes-updates">Theme-Updates</h2>
-				<p>Das Theme bestimmt das Design und meist auch die Struktur der Website. Durch Updates bleibt es kompatibel mit neuen Funktionen und Sicherheitsstandards.</p>
+				<h2 id="theme-updates">Theme-Updates</h2>
+				<p>Das Theme ist die Grundlage für Aufbau und Gestaltung deiner Website. Updates halten es mit neuen WordPress-Versionen kompatibel und schließen Sicherheitslücken. Das Aussehen deiner Website ändert sich dadurch in der Regel nicht. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th class="th">Zeitpunkt</th>
-						<th class="th">Theme</th>
-						<th class="th">Alte Version</th>
-						<th class="th">Aktuelle Version</th>
+						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Theme</th>
+						<th scope="col" class="th">Alte Version</th>
+						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
 				</thead>
 				<tbody>
+
 					[section.themes.updated]
+
 					<tr>
 						<td>[theme.updated.date]</td>
 						<td>[theme.name]</td>
 						<td>[theme.old.version]</td>
 						<td>[theme.current.version]</td>
 					</tr>
+
 					[/section.themes.updated]
+
 				</tbody>
 			</table>
 		</section>
+
 		[/config-section-data]
+
 		[config-section-data]
 		<?= $printSectionVisibility('plugins-updates') ?>
-		<section aria-labelledby="plugins-updates">
+
+		<section aria-labelledby="plugin-updates">
 			<div class="flow section-heading-spacer">
-				<h2 id="plugins-updates">Plugin-Updates</h2>
-				<p>Plugins erweitern die Website um zusätzliche Funktionalität. Ihre Updates verbessern oft Sicherheit und Leistung.</p>
+				<h2 id="plugin-updates">Plugin-Updates</h2>
+				<p>Plugins sind Zusatzprogramme, die deine Website um Funktionen erweitern, zum Beispiel ein Kontaktformular oder Suchmaschinen-Einstellungen. Die meisten Sicherheitslücken bei WordPress-Seiten entstehen in Plugins, deshalb sind diese Updates besonders wichtig. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th class="th">Zeitpunkt</th>
-						<th class="th">Plugin</th>
-						<th class="th">Alte Version</th>
-						<th class="th">Aktuelle Version</th>
+						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Plugin</th>
+						<th scope="col" class="th">Alte Version</th>
+						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
 				</thead>
 				<tbody>
+
 					[section.plugins.updated]
+
 					<tr>
 						<td>[plugin.updated.date]</td>
 						<td>[plugin.name]</td>
 						<td>[plugin.old.version]</td>
 						<td>[plugin.current.version]</td>
 					</tr>
+
 					[/section.plugins.updated]
+
 				</tbody>
 			</table>
 		</section>
+
 		[/config-section-data]
 
 		<?php if ($isModuleActiveBackups): ?>
+
 		[config-section-data]
+		[config-section-extra max-empty="1" /]
 		<?= $printSectionVisibility('backups') ?>
+
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
 				<h2 id="backups">Backups</h2>
-				<p>Backups sind Sicherheitskopien der Website, um Datenverlust vorzubeugen. In der Regel wird die Datenbank dreimal täglich gesichert und einmal wöchentlich werden alle Dateien der Website vollständig gespeichert.</p>
+				<p>Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, etwa durch einen Fehler, einen Hackerangriff oder ein missglücktes Update, kann deine Website auf einen früheren Stand zurückgesetzt werden, bis zu drei Monate zurück. Die Sicherungen laufen vollautomatisch, du musst dafür nichts tun.</p>
+			</div>
+			<table>
+				<tbody>
+
+					<tr>
+						<th scope="row">Datenbank (z.&nbsp;B. Texte, Seiten, Einstellungen)</th>
+						<td>Alle 2 Stunden</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Dateien (z.&nbsp;B. Bilder, Theme, Plugins)</th>
+						<td>Alle 8 Stunden, einmal pro Woche vollständig, dazwischen nur die Änderungen</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Wie weit zurück</th>
+						<td>Drei Monate</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Speicherort</th>
+						<td>Bei Hetzner in Deutschland, getrennt vom Server deiner Website, jede Website in einem eigenen, abgetrennten Bereich</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Erstellte Backups in diesem Zeitraum</th>
+						<td>[backup.created.count]</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</section>
+
+		[/config-section-data]
+
+		<?php endif; ?>
+
+		[config-section-data]
+		<?= $printSectionVisibility('users') ?>
+
+		<section aria-labelledby="new-users">
+			<div class="flow section-heading-spacer">
+				<h2 id="new-users" class="section-heading-spacer">Neue Benutzerkonten</h2>
+				<p>Hier siehst du, welche Benutzerkonten in diesem Zeitraum auf deiner Website angelegt wurden. Die Rolle bestimmt, was jemand darf: Administratoren dürfen alles, Redakteure Inhalte bearbeiten und veröffentlichen, aber keine Einstellungen ändern. Prüf kurz, ob du jedes neue Konto kennst. Ein unbekanntes Konto, vor allem mit Administrator-Rechten, kann ein Zeichen dafür sein, dass sich jemand unbefugt Zugang verschafft hat. Dann melde dich bitte sofort.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th class="th table-column-size--1-4">Zeitpunkt</th>
-						<th class="th">Details</th>
+						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Benutzer</th>
+						<th scope="col" class="th">Rolle</th>
+						<th scope="col" class="th">Angelegt von</th>
 					</tr>
 				</thead>
 				<tbody>
-					[section.backups.created]
-					<tr>
-						<td>[backup.created.date]</td>
-						<td>[backup.created.type]</td>
-					</tr>
-					[/section.backups.created]
-				</tbody>
-			</table>
-		</section>
-		[/config-section-data]
-		<?php endif; ?>
-		[config-section-data]
-		<?= $printSectionVisibility('users') ?>
-		<section aria-labelledby="added-users">
-			<h2 id="added-users" class="section-heading-spacer">Neu hinzugefügte Nutzer</h2>
-			<table>
-				<thead>
-					<tr>
-						<th class="th">Zeitpunkt</th>
-						<th class="th">Rolle</th>
-						<th class="th">Anzeigename</th>
-					</tr>
-				</thead>
-				<tbody>
+
 					[section.users.created]
+
 					<tr>
 						<td>[user.created.date]</td>
+						<td>[user.name]</td>
 						<td>[user.created.role]</td>
-						<td>[user.name]</td>
+						<td>[user.created.author]</td>
 					</tr>
+
 					[/section.users.created]
+
 				</tbody>
 			</table>
 		</section>
+
 		[/config-section-data]
+
 		[config-section-data]
 		<?= $printSectionVisibility('users') ?>
-		<section aria-labelledby="updated-users">
-			<h2 id="updated-users" class="section-heading-spacer">Aktualisierte Nutzer</h2>
-			<table>
-				<thead>
-					<tr>
-						<th class="th">Zeitpunkt</th>
-						<th class="th">Rolle</th>
-						<th class="th">Anzeigename</th>
-					</tr>
-				</thead>
-				<tbody>
-					[section.users.updated]
-					<tr>
-						<td>[user.updated.date]</td>
-						<td>[user.updated.role]</td>
-						<td>[user.name]</td>
-					</tr>
-					[/section.users.updated]
-				</tbody>
-			</table>
-		</section>
-		[/config-section-data]
-		[config-section-data]
-		<?= $printSectionVisibility('users') ?>
+
 		<section aria-labelledby="deleted-users">
-			<h2 id="deleted-users" class="section-heading-spacer">Gelöschte Nutzer</h2>
+			<div class="flow section-heading-spacer">
+				<h2 id="deleted-users" class="section-heading-spacer">Gelöschte Benutzerkonten</h2>
+				<p>Hier siehst du, welche Benutzerkonten in diesem Zeitraum gelöscht wurden und von wem. Das passiert zum Beispiel, wenn jemand dein Team verlässt. Prüf auch hier, ob jede Löschung von dir oder deinem Team stammt. Verlässt jemand dein Team, sollte sein Konto immer gelöscht werden. Offene Konten ehemaliger Mitarbeiter sind ein häufiges Einfallstor.</p>
+			</div>
 			<table>
 				<thead>
 					<tr>
-						<th class="th">Zeitpunkt</th>
-						<th class="th">Rolle</th>
-						<th class="th">Anzeigename</th>
+						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Benutzer</th>
+						<th scope="col" class="th">Rolle</th>
+						<th scope="col" class="th">Gelöscht von</th>
 					</tr>
 				</thead>
 				<tbody>
+
 					[section.users.deleted]
+
 					<tr>
 						<td>[user.deleted.date]</td>
-						<td>[user.deleted.role]</td>
 						<td>[user.name]</td>
+						<td>[user.deleted.role]</td>
+						<td>[user.deleted.author]</td>
 					</tr>
+
 					[/section.users.deleted]
+
 				</tbody>
 			</table>
 		</section>
+
 		[/config-section-data]
+
 	</main>
 </body>
 </html>
