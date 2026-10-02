@@ -15,7 +15,7 @@ $printSectionVisibility = function ($option = null) use ($report) {
 
 	$options = [
 		0 => '[hide-if-empty]',
-		1 => '', // Show report data
+		1 => '', // => Show report data
 		2 => '[hide-section-data]'
 	];
 
@@ -34,6 +34,8 @@ $reportTitle = $report->heading;
 
 $supportEmail = 'edgar@edgarbollow.com';
 $supportMessagingId = 'bollowco';
+
+// MainWP Pro Reports renders the PDF with `dompdf`, which supports only a subset of HTML and CSS. Markup and styles are kept simple on purpose. Properties `dompdf` doesn’t support are ignored there.
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -41,8 +43,6 @@ $supportMessagingId = 'bollowco';
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
-		/* In some places, older CSS is intentionally used to ensure stability with `dompdf`. */
-
 		* {
 			box-sizing: border-box;
 			margin: 0;
@@ -160,6 +160,7 @@ $supportMessagingId = 'bollowco';
 		th,
 		td {
 			padding: .5rem .75rem;
+			vertical-align: top;
 			border-right-width: 1px;
 			border-bottom-width: 1px;
 		}
@@ -175,7 +176,7 @@ $supportMessagingId = 'bollowco';
 		}
 
 		header {
-			margin-bottom: 7.5rem;
+			margin-bottom: 6.25rem;
 			text-align: right;
 			line-height: 0;
 		}
@@ -250,9 +251,9 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="report-title" class="flow">
 			<h1 id="report-title"><?= esc_html($reportTitle) ?></h1>
 			<div class="flow">
-				<p>Im Rahmen unserer Vereinbarung betreue ich deine Website <strong>[client.site.name]</strong>. Vielen Dank für dein Vertrauen.</p>
-				<p>In diesem Bericht erhältst du eine Zusammenfassung des Zustands deiner Website und der im Zeitraum vom <strong>[report.daterange]</strong> erbrachten Wartungsarbeiten.</p>
-				<p>Falls du Hilfe benötigst oder Fragen hast, schreib mir gerne eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
+				<p>Hier ist dein Überblick: wie es deiner Website geht und was ich in diesem Zeitraum für sie erledigt habe. Danke, dass du sie mir anvertraust.</p>
+				<p>Jeder Abschnitt ist kurz erklärt, du brauchst also kein Technikwissen. Abschnitte, in denen sich nichts getan hat, werden ausgeblendet.</p>
+				<p>Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder per <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
 			</div>
 		</section>
 
@@ -277,7 +278,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('ga') ?>
 
 					<tr>
-						<th scope="row">Besucher</th>
+						<th scope="row">Besuche</th>
 						<td>[ga.visits]</td>
 					</tr>
 
@@ -311,7 +312,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('uptime') ?>
 
 					<tr>
-						<th scope="row">Verfügbarkeit</th>
+						<th scope="row">Verfügbarkeit (30 Tage)</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
@@ -319,39 +320,9 @@ $supportMessagingId = 'bollowco';
 
 					<?php endif; ?>
 
-					<?php if ($isModuleActiveMaintenance): ?>
-
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('maintenance') ?>
-
-					<tr>
-						<th scope="row">Datenbankbereinigungen</th>
-						<td>[maintenance.process.count]</td>
-					</tr>
-
-					[/config-section-data]
-
-					<?php endif; ?>
-
-					<tr>
-						<th scope="row">PHP-Version</th>
-						<td>[client.site.php]</td>
-					</tr>
-
-					<tr>
-						<th scope="row">Datenbankversion</th>
-						<td>[client.site.mysql]</td>
-					</tr>
-
 					<tr>
 						<th scope="row">WordPress-Version</th>
 						<td>[client.site.version]</td>
-					</tr>
-
-					<tr>
-						<th scope="row">Aktives Theme</th>
-						<td>[client.site.theme]</td>
 					</tr>
 
 					[config-section-data]
@@ -402,6 +373,33 @@ $supportMessagingId = 'bollowco';
 
 					<?php endif; ?>
 
+					<?php if ($isModuleActiveMaintenance): ?>
+
+					[config-section-data]
+					[config-section-extra max-empty="1" /]
+					<?= $printSectionVisibility('maintenance') ?>
+
+					<tr>
+						<th scope="row">Datenbankbereinigungen</th>
+						<td>[maintenance.process.count]</td>
+					</tr>
+
+					[/config-section-data]
+
+					<?php endif; ?>
+
+					<?php // Shown without `[config-section-data]` on purpose: a `0` confirms that no accounts were added or deleted, and any unexpected change stands out immediately. ?>
+
+					<tr>
+						<th scope="row">Neue Benutzerkonten</th>
+						<td>[user.created.count]</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Gelöschte Benutzerkonten</th>
+						<td>[user.deleted.count]</td>
+					</tr>
+
 				</tbody>
 			</table>
 		</section>
@@ -415,7 +413,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
 				<h2 id="analytics">Besucher deiner Website</h2>
-				<p>Hier siehst du, wie oft deine Website im Berichtszeitraum besucht wurde und was die Besucher dort getan haben. Gemessen wird mit Google Analytics, einem Statistikdienst von Google. Jede Zahl ist darunter kurz erklärt. Schwankungen von Monat zu Monat sind ganz normal.</p>
+				<p>Hier siehst du, wie oft deine Website in diesem Zeitraum besucht wurde und was die Besucher dort getan haben. Gemessen wird mit Google Analytics, einem Statistikdienst von Google. Jede Zahl ist darunter kurz erklärt. Schwankungen von Monat zu Monat sind ganz normal.</p>
 			</div>
 			<table class="section-heading-spacer">
 				<tbody>
@@ -548,7 +546,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
 				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
-				<p>Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&#8239;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&#8239;% rund 7 Stunden.</p>
+				<p>Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% rund 7 Stunden.</p>
 			</div>
 			<table>
 				<tbody>
@@ -562,42 +560,6 @@ $supportMessagingId = 'bollowco';
 						<th scope="row">Seit Beginn der Überwachung</th>
 						<td>[aum.alltimeuptimeratio]</td>
 					</tr>
-
-				</tbody>
-			</table>
-		</section>
-
-		[/config-section-data]
-
-		<?php endif; ?>
-
-		<?php if ($isModuleActiveMaintenance): ?>
-
-		[config-section-data]
-		<?= $printSectionVisibility('maintenance') ?>
-
-		<section aria-labelledby="database-cleanups">
-			<div class="flow section-heading-spacer">
-				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
-				<p>Deine Website speichert Texte, Seiten, Kommentare und Einstellungen in einer Datenbank. Dort sammeln sich mit der Zeit Reste an, die niemand mehr braucht, zum Beispiel Spam-Kommentare oder veraltete Zwischenspeicher-Einträge. Sie werden regelmäßig automatisch entfernt. Hier siehst du, wann das zuletzt passiert ist.</p>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th scope="col" class="th table-column-size--1-4">Zeitpunkt</th>
-						<th scope="col" class="th">Was passiert ist</th>
-					</tr>
-				</thead>
-				<tbody>
-
-					[section.maintenance.process]
-
-					<tr>
-						<td>[maintenance.process.date]</td>
-						<td>[maintenance.process.details]</td>
-					</tr>
-
-					[/section.maintenance.process]
 
 				</tbody>
 			</table>
@@ -760,12 +722,48 @@ $supportMessagingId = 'bollowco';
 
 		<?php endif; ?>
 
+		<?php if ($isModuleActiveMaintenance): ?>
+
+		[config-section-data]
+		<?= $printSectionVisibility('maintenance') ?>
+
+		<section aria-labelledby="database-cleanups">
+			<div class="flow section-heading-spacer">
+				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
+				<p>Deine Website speichert Texte, Seiten, Kommentare und Einstellungen in einer Datenbank. Dort sammeln sich mit der Zeit Reste an, die niemand mehr braucht, zum Beispiel Spam-Kommentare oder veraltete Zwischenspeicher-Einträge. Sie werden regelmäßig automatisch entfernt. Hier siehst du, wann das zuletzt passiert ist.</p>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" class="th table-column-size--1-4">Zeitpunkt</th>
+						<th scope="col" class="th">Was passiert ist</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					[section.maintenance.process]
+
+					<tr>
+						<td>[maintenance.process.date]</td>
+						<td>[maintenance.process.details]</td>
+					</tr>
+
+					[/section.maintenance.process]
+
+				</tbody>
+			</table>
+		</section>
+
+		[/config-section-data]
+
+		<?php endif; ?>
+
 		[config-section-data]
 		<?= $printSectionVisibility('users') ?>
 
 		<section aria-labelledby="new-users">
 			<div class="flow section-heading-spacer">
-				<h2 id="new-users" class="section-heading-spacer">Neue Benutzerkonten</h2>
+				<h2 id="new-users">Neue Benutzerkonten</h2>
 				<p>Hier siehst du, welche Benutzerkonten in diesem Zeitraum auf deiner Website angelegt wurden. Die Rolle bestimmt, was jemand darf: Administratoren dürfen alles, Redakteure Inhalte bearbeiten und veröffentlichen, aber keine Einstellungen ändern. Prüf kurz, ob du jedes neue Konto kennst. Ein unbekanntes Konto, vor allem mit Administrator-Rechten, kann ein Zeichen dafür sein, dass sich jemand unbefugt Zugang verschafft hat. Dann melde dich bitte sofort.</p>
 			</div>
 			<table>
@@ -801,7 +799,7 @@ $supportMessagingId = 'bollowco';
 
 		<section aria-labelledby="deleted-users">
 			<div class="flow section-heading-spacer">
-				<h2 id="deleted-users" class="section-heading-spacer">Gelöschte Benutzerkonten</h2>
+				<h2 id="deleted-users">Gelöschte Benutzerkonten</h2>
 				<p>Hier siehst du, welche Benutzerkonten in diesem Zeitraum gelöscht wurden und von wem. Das passiert zum Beispiel, wenn jemand dein Team verlässt. Prüf auch hier, ob jede Löschung von dir oder deinem Team stammt. Verlässt jemand dein Team, sollte sein Konto immer gelöscht werden. Offene Konten ehemaliger Mitarbeiter sind ein häufiges Einfallstor.</p>
 			</div>
 			<table>
