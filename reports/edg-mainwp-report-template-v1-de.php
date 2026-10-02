@@ -29,6 +29,7 @@ $isModuleActiveLighthouse = is_plugin_active('mainwp-lighthouse-extension/mainwp
 $isModuleActiveUptime = is_plugin_active('advanced-uptime-monitor-extension/advanced-uptime-monitor-extension.php');
 $isModuleActiveMaintenance = is_plugin_active('mainwp-maintenance-extension/mainwp-maintenance-extension.php');
 $isModuleActiveBackups = is_plugin_active('wpvivid-backup-mainwp/wpvivid-backup-mainwp.php');
+$isModuleActiveVulnerabilityChecker = is_plugin_active('mainwp-vulnerability-checker-extension/mainwp-vulnerability-checker-extension.php');
 
 $reportTitle = $report->heading;
 
@@ -391,13 +392,23 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					<?php endif; ?>
 
-					<?php // Shown without `[config-section-data]` on purpose: a `0` confirms that no accounts were added or deleted, and any unexpected change stands out immediately. ?>
+					<?php if ($isModuleActiveVulnerabilityChecker): ?>
 
+					<?php // Shown without `[config-section-data]` on purpose: any unexpected change stands out immediately. ?>
+					<tr>
+						<th scope="row">Bekannte Sicherheitslücken</th>
+						<td>[vulnerabilities.count]</td>
+					</tr>
+
+					<?php endif; ?>
+
+					<?php // Shown without `[config-section-data]` on purpose: any unexpected change stands out immediately. ?>
 					<tr>
 						<th scope="row">Neue Benutzerkonten</th>
 						<td>[user.created.count]</td>
 					</tr>
 
+					<?php // Shown without `[config-section-data]` on purpose: any unexpected change stands out immediately. ?>
 					<tr>
 						<th scope="row">Gelöschte Benutzerkonten</th>
 						<td>[user.deleted.count]</td>
@@ -754,6 +765,45 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 					</tr>
 
 					[/section.maintenance.process]
+
+				</tbody>
+			</table>
+		</section>
+
+		[/config-section-data]
+
+		<?php endif; ?>
+
+		<?php if ($isModuleActiveVulnerabilityChecker): ?>
+
+		[config-section-data]
+		[config-section-extra max-empty="3" /]
+
+		<section aria-labelledby="security">
+			<div class="flow section-heading-spacer">
+				<h2 id="security">Sicherheit deiner Website</h2>
+				<p class="text--narrow">Hier siehst du, ob deine Website gut geschützt ist. Geprüft wird automatisch: täglich auf bekannte Sicherheitslücken in Plugins und Themes, wöchentlich das Zertifikat für die verschlüsselte Verbindung.</p>
+			</div>
+			<table>
+				<tbody>
+
+					<tr>
+						<th scope="row">Bekannte Sicherheitslücken</th>
+						<td>[vulnerabilities.count]</td>
+						<td>Zeigt, ob zum Zeitpunkt des Berichts für ein Plugin oder Theme deiner Website eine Sicherheitslücke bekannt ist. Jeder Treffer wird geprüft und so schnell wie möglich behoben, meist durch ein Update.</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Letzte Prüfung</th>
+						<td>[vulnerable.checkdate]</td>
+						<td>Wann die Prüfung zuletzt gelaufen ist.</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Verschlüsselte Verbindung (HTTPS)</th>
+						<td>Gültig bis [ssl.monitor.valid.to]</td>
+						<td>Das Zertifikat sorgt für das Schloss-Symbol im Browser und schützt die Daten deiner Besucher unterwegs. Es verlängert sich automatisch und wöchentlich wird geprüft, dass es nie abläuft.</td>
+					</tr>
 
 				</tbody>
 			</table>
