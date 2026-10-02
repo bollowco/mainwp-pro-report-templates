@@ -262,22 +262,14 @@ $supportMessagingId = 'bollowco';
 
 					<?php if ($isModuleActiveAnalytics): ?>
 
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-
 					<tr>
 						<th scope="row">Besuche</th>
 						<td>[ga.visits]</td>
 					</tr>
 
-					[/config-section-data]
-
 					<?php endif; ?>
 
 					<?php if ($isModuleActiveLighthouse): ?>
-
-					[config-section-data]
-					[config-section-extra max-empty="2" /]
 
 					<tr>
 						<th scope="row">Geschwindigkeit: Computer</th>
@@ -288,21 +280,14 @@ $supportMessagingId = 'bollowco';
 						<td>[lighthouse.performance.mobile]/100</td>
 					</tr>
 
-					[/config-section-data]
-
 					<?php endif; ?>
 
 					<?php if ($isModuleActiveUptime): ?>
-
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
 
 					<tr>
 						<th scope="row">Verfügbarkeit (30 Tage)</th>
 						<td>[aum.uptime30]</td>
 					</tr>
-
-					[/config-section-data]
 
 					<?php endif; ?>
 
@@ -311,61 +296,36 @@ $supportMessagingId = 'bollowco';
 						<td>[client.site.version]</td>
 					</tr>
 
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-
 					<tr>
 						<th scope="row">Updates: WordPress</th>
 						<td>[wordpress.updated.count]</td>
 					</tr>
-
-					[/config-section-data]
-
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
 
 					<tr>
 						<th scope="row">Updates: Themes</th>
 						<td>[theme.updated.count]</td>
 					</tr>
 
-					[/config-section-data]
-
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
-
 					<tr>
 						<th scope="row">Updates: Plugins</th>
 						<td>[plugin.updated.count]</td>
 					</tr>
 
-					[/config-section-data]
-
 					<?php if ($isModuleActiveBackups): ?>
-
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
 
 					<tr>
 						<th scope="row">Erstellte Backups</th>
 						<td>[backup.created.count]</td>
 					</tr>
 
-					[/config-section-data]
-
 					<?php endif; ?>
 
 					<?php if ($isModuleActiveMaintenance): ?>
-
-					[config-section-data]
-					[config-section-extra max-empty="1" /]
 
 					<tr>
 						<th scope="row">Datenbankbereinigungen</th>
 						<td>[maintenance.process.count]</td>
 					</tr>
-
-					[/config-section-data]
 
 					<?php endif; ?>
 
@@ -393,9 +353,6 @@ $supportMessagingId = 'bollowco';
 		</section>
 
 		<?php if ($isModuleActiveAnalytics): ?>
-
-		[config-section-data]
-		[config-section-extra max-empty="8" /]
 
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
@@ -456,14 +413,9 @@ $supportMessagingId = 'bollowco';
 			</figure>
 		</section>
 
-		[/config-section-data]
-
 		<?php endif; ?>
 
 		<?php if ($isModuleActiveLighthouse): ?>
-
-		[config-section-data]
-		[config-section-extra max-empty="10" /]
 
 		<section aria-labelledby="performance">
 			<div class="flow section-heading-spacer">
@@ -521,19 +473,14 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
-		[/config-section-data]
-
 		<?php endif; ?>
 
 		<?php if ($isModuleActiveUptime): ?>
 
-		[config-section-data]
-		[config-section-extra max-empty="2" /]
-
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
 				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
-				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% ca. 7 Stunden.</p>
+				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% rund 7 Stunden.</p>
 			</div>
 			<table>
 				<tbody>
@@ -552,9 +499,10 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
-		[/config-section-data]
-
 		<?php endif; ?>
+
+		[config-section-data]
+		[hide-if-empty]
 
 		<section aria-labelledby="wordpress-updates">
 			<div class="flow section-heading-spacer">
@@ -584,6 +532,11 @@ $supportMessagingId = 'bollowco';
 				</tbody>
 			</table>
 		</section>
+
+		[/config-section-data]
+
+		[config-section-data]
+		[hide-if-empty]
 
 		<section aria-labelledby="theme-updates">
 			<div class="flow section-heading-spacer">
@@ -616,6 +569,11 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
+		[/config-section-data]
+
+		[config-section-data]
+		[hide-if-empty]
+
 		<section aria-labelledby="plugin-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="plugin-updates">Plugin-Updates</h2>
@@ -647,10 +605,13 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
+		[/config-section-data]
+
 		<?php if ($isModuleActiveBackups): ?>
 
 		[config-section-data]
 		[config-section-extra max-empty="1" /]
+		[hide-if-empty]
 
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
@@ -695,6 +656,9 @@ $supportMessagingId = 'bollowco';
 
 		<?php if ($isModuleActiveMaintenance): ?>
 
+		[config-section-data]
+		[hide-if-empty]
+
 		<section aria-labelledby="database-cleanups">
 			<div class="flow section-heading-spacer">
 				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
@@ -722,12 +686,11 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
+		[/config-section-data]
+
 		<?php endif; ?>
 
 		<?php if ($isModuleActiveVulnerabilityChecker && $isModuleActiveSslMonitor): ?>
-
-		[config-section-data]
-		[config-section-extra max-empty="3" /]
 
 		<section aria-labelledby="security">
 			<div class="flow section-heading-spacer">
@@ -759,9 +722,10 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
-		[/config-section-data]
-
 		<?php endif; ?>
+
+		[config-section-data]
+		[hide-if-empty]
 
 		<section aria-labelledby="new-users">
 			<div class="flow section-heading-spacer">
@@ -794,6 +758,11 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
+		[/config-section-data]
+
+		[config-section-data]
+		[hide-if-empty]
+
 		<section aria-labelledby="deleted-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="deleted-users">Gelöschte Benutzerkonten</h2>
@@ -824,6 +793,8 @@ $supportMessagingId = 'bollowco';
 				</tbody>
 			</table>
 		</section>
+
+		[/config-section-data]
 
 	</main>
 </body>
