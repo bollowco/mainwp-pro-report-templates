@@ -217,7 +217,7 @@ $supportMessagingId = 'bollowco';
 			page-break-after: always;
 		}
 
-		.table-column-size--1-4 {
+		.table-column-size--25 {
 			width: 25%;
 		}
 
@@ -225,7 +225,15 @@ $supportMessagingId = 'bollowco';
 			width: 30%;
 		}
 
-		.table-column-size--1-2 {
+		.table-column-size--35 {
+			width: 35%;
+		}
+
+		.table-column-size--40 {
+			width: 40%;
+		}
+
+		.table-column-size--50 {
 			width: 50%;
 		}
 	</style>
@@ -285,7 +293,7 @@ $supportMessagingId = 'bollowco';
 					<?php if ($isModuleActiveUptime): ?>
 
 					<tr>
-						<th scope="row">Verfügbarkeit (30 Tage)</th>
+						<th scope="row">Verfügbarkeit (letzte 30 Tage)</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
@@ -366,7 +374,7 @@ $supportMessagingId = 'bollowco';
 					<tr>
 						<th scope="row" class="table-column-size--30">Besuche</th>
 						<td>[ga.visits]</td>
-						<td class="table-column-size--1-2">Wie oft deine Website in diesem Zeitraum aufgerufen wurde. Ein Besuch endet nach 30 Minuten ohne Aktivität. Kommt dieselbe Person an zwei Tagen vorbei, sind das zwei Besuche – die Zahl entspricht also nicht der Anzahl der Personen.</td>
+						<td class="table-column-size--50">Wie oft deine Website in diesem Zeitraum aufgerufen wurde. Ein Besuch endet nach 30 Minuten ohne Aktivität. Kommt dieselbe Person an zwei Tagen vorbei, sind das zwei Besuche – die Zahl entspricht also nicht der Anzahl der Personen.</td>
 					</tr>
 
 					<tr>
@@ -426,10 +434,10 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" aria-label="Kategorie" class="th table-column-size--30"></th>
+						<th scope="col" aria-label="Kategorie" class="th table-column-size--25"></th>
 						<th scope="col" class="th">Computer</th>
 						<th scope="col" class="th">Handy</th>
-						<th scope="col" class="th table-column-size--30">Was bedeutet das?</th>
+						<th scope="col" class="th table-column-size--35">Was bedeutet das?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -512,7 +520,7 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--50">Zeitpunkt</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -547,7 +555,7 @@ $supportMessagingId = 'bollowco';
 				<thead>
 					<tr>
 						<th scope="col" class="th">Zeitpunkt</th>
-						<th scope="col" class="th">Theme</th>
+						<th scope="col" class="th table-column-size--40">Theme</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -583,7 +591,7 @@ $supportMessagingId = 'bollowco';
 				<thead>
 					<tr>
 						<th scope="col" class="th">Zeitpunkt</th>
-						<th scope="col" class="th">Plugin</th>
+						<th scope="col" class="th table-column-size--40">Plugin</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -608,10 +616,6 @@ $supportMessagingId = 'bollowco';
 		[/config-section-data]
 
 		<?php if ($isModuleActiveBackups): ?>
-
-		[config-section-data]
-		[config-section-extra max-empty="1" /]
-		[hide-if-empty]
 
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
@@ -650,8 +654,6 @@ $supportMessagingId = 'bollowco';
 			</table>
 		</section>
 
-		[/config-section-data]
-
 		<?php endif; ?>
 
 		<?php if ($isModuleActiveMaintenance): ?>
@@ -667,7 +669,7 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--1-4">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--30">Zeitpunkt</th>
 						<th scope="col" class="th">Was passiert ist</th>
 					</tr>
 				</thead>
@@ -703,7 +705,7 @@ $supportMessagingId = 'bollowco';
 					<tr>
 						<th scope="row">Bekannte Sicherheitslücken</th>
 						<td>[vulnerabilities.count]</td>
-						<td>Zeigt, ob zum Zeitpunkt des Berichts für ein Plugin oder Theme deiner Website eine Sicherheitslücke bekannt ist. Jeder Treffer wird geprüft und so schnell wie möglich behoben, meist durch ein Update.</td>
+						<td class="table-column-size--40">Zeigt, ob zum Zeitpunkt des Berichts für ein Plugin oder Theme deiner Website eine Sicherheitslücke bekannt ist. Jeder Treffer wird geprüft und so schnell wie möglich behoben, meist durch ein Update.</td>
 					</tr>
 
 					<tr>
