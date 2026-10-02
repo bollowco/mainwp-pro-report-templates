@@ -16,9 +16,10 @@ $isModuleActiveUptime = is_plugin_active('advanced-uptime-monitor-extension/adva
 $isModuleActiveMaintenance = is_plugin_active('mainwp-maintenance-extension/mainwp-maintenance-extension.php');
 $isModuleActiveBackups = is_plugin_active('wpvivid-backup-mainwp/wpvivid-backup-mainwp.php');
 $isModuleActiveVulnerabilityChecker = is_plugin_active('mainwp-vulnerability-checker-extension/mainwp-vulnerability-checker-extension.php');
+$isModuleActiveSslMonitor = is_plugin_active('mainwp-ssl-monitor-extension/mainwp-ssl-monitor-extension.php');
 
-const SUPPORT_EMAIL = 'edgar@edgarbollow.com';
-const SUPPORT_MESSAGING_ID = 'bollowco';
+$supportEmail = 'edgar@edgarbollow.com';
+$supportMessagingId = 'bollowco';
 
 // MainWP Pro Reports renders the PDF with `dompdf`, which supports only a subset of HTML and CSS. Markup and styles are kept simple on purpose. Properties `dompdf` doesn’t support are ignored there.
 ?>
@@ -241,7 +242,7 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 			<div class="flow">
 				<p class="text--narrow">Hier ist dein Überblick: wie es deiner Website geht und was ich in diesem Zeitraum für sie erledigt habe. Danke, dass du sie mir anvertraust.</p>
 				<p class="text--narrow">Jeder Abschnitt ist kurz erklärt, du brauchst also kein Technikwissen. Abschnitte, in denen sich nichts getan hat, werden ausgeblendet.</p>
-				<p class="text--narrow">Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= esc_url('mailto:' . SUPPORT_EMAIL) ?>">E-Mail</a> oder per <a href="<?= esc_url('https://wa.me/' . SUPPORT_MESSAGING_ID) ?>" rel="external">WhatsApp</a>.</p>
+				<p class="text--narrow">Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder per <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
 			</div>
 		</section>
 
@@ -297,7 +298,7 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 					[config-section-extra max-empty="1" /]
 
 					<tr>
-						<th scope="row">Verfügbarkeit</th>
+						<th scope="row">Verfügbarkeit (30 Tage)</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
@@ -370,7 +371,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					<?php if ($isModuleActiveVulnerabilityChecker): ?>
 
-					<?php // Shown without `[config-section-data]` on purpose: any unexpected change stands out immediately. ?>
 					<tr>
 						<th scope="row">Bekannte Sicherheitslücken</th>
 						<td>[vulnerabilities.count]</td>
@@ -378,13 +378,11 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					<?php endif; ?>
 
-					<?php // Shown without `[config-section-data]` on purpose: any unexpected change stands out immediately. ?>
 					<tr>
 						<th scope="row">Neue Benutzerkonten</th>
 						<td>[user.created.count]</td>
 					</tr>
 
-					<?php // Shown without `[config-section-data]` on purpose: any unexpected change stands out immediately. ?>
 					<tr>
 						<th scope="row">Gelöschte Benutzerkonten</th>
 						<td>[user.deleted.count]</td>
@@ -397,7 +395,7 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		<?php if ($isModuleActiveAnalytics): ?>
 
 		[config-section-data]
-		[config-section-extra max-empty="7" /]
+		[config-section-extra max-empty="8" /]
 
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
@@ -726,7 +724,7 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		<?php endif; ?>
 
-		<?php if ($isModuleActiveVulnerabilityChecker): ?>
+		<?php if ($isModuleActiveVulnerabilityChecker && $isModuleActiveSslMonitor): ?>
 
 		[config-section-data]
 		[config-section-extra max-empty="3" /]
@@ -754,7 +752,7 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 					<tr>
 						<th scope="row">Verschlüsselte Verbindung (HTTPS)</th>
 						<td>Gültig bis [ssl.monitor.valid.to]</td>
-						<td>Das Zertifikat sorgt für das Schloss-Symbol im Browser und schützt die Daten deiner Besucher unterwegs. Es verlängert sich automatisch und wöchentlich wird geprüft, dass es nie abläuft.</td>
+						<td>Das Zertifikat sorgt für das Schloss-Symbol im Browser und schützt die Daten deiner Besucher unterwegs. Es verlängert sich automatisch, zusätzlich wird wöchentlich geprüft, ob es gültig ist.</td>
 					</tr>
 
 				</tbody>
