@@ -217,6 +217,10 @@ $supportMessagingId = 'bollowco';
 			page-break-after: always;
 		}
 
+		.table-column-size--20 {
+			width: 20%;
+		}
+
 		.table-column-size--25 {
 			width: 25%;
 		}
@@ -227,10 +231,6 @@ $supportMessagingId = 'bollowco';
 
 		.table-column-size--35 {
 			width: 35%;
-		}
-
-		.table-column-size--40 {
-			width: 40%;
 		}
 
 		.table-column-size--50 {
@@ -520,7 +520,7 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--50">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--45">Zeitpunkt</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -555,7 +555,7 @@ $supportMessagingId = 'bollowco';
 				<thead>
 					<tr>
 						<th scope="col" class="th">Zeitpunkt</th>
-						<th scope="col" class="th table-column-size--40">Theme</th>
+						<th scope="col" class="th table-column-size--35">Theme</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -591,7 +591,7 @@ $supportMessagingId = 'bollowco';
 				<thead>
 					<tr>
 						<th scope="col" class="th">Zeitpunkt</th>
-						<th scope="col" class="th table-column-size--40">Plugin</th>
+						<th scope="col" class="th table-column-size--35">Plugin</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -705,7 +705,7 @@ $supportMessagingId = 'bollowco';
 					<tr>
 						<th scope="row">Bekannte Sicherheitslücken</th>
 						<td>[vulnerabilities.count]</td>
-						<td class="table-column-size--40">Zeigt, ob zum Zeitpunkt des Berichts für ein Plugin oder Theme deiner Website eine Sicherheitslücke bekannt ist. Jeder Treffer wird geprüft und so schnell wie möglich behoben, meist durch ein Update.</td>
+						<td class="table-column-size--45">Zeigt, ob zum Zeitpunkt des Berichts für ein Plugin oder Theme deiner Website eine Sicherheitslücke bekannt ist. Jeder Treffer wird geprüft und so schnell wie möglich behoben, meist durch ein Update.</td>
 					</tr>
 
 					<tr>
@@ -739,7 +739,7 @@ $supportMessagingId = 'bollowco';
 					<tr>
 						<th scope="col" class="th">Zeitpunkt</th>
 						<th scope="col" class="th">Benutzer</th>
-						<th scope="col" class="th">Rolle</th>
+						<th scope="col" class="th table-column-size--20">Rolle</th>
 						<th scope="col" class="th">Angelegt von</th>
 					</tr>
 				</thead>
@@ -775,7 +775,7 @@ $supportMessagingId = 'bollowco';
 					<tr>
 						<th scope="col" class="th">Zeitpunkt</th>
 						<th scope="col" class="th">Benutzer</th>
-						<th scope="col" class="th">Rolle</th>
+						<th scope="col" class="th table-column-size--20">Rolle</th>
 						<th scope="col" class="th">Gelöscht von</th>
 					</tr>
 				</thead>
