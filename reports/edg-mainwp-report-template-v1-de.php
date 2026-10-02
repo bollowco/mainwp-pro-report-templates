@@ -557,8 +557,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		[/config-section-data]
 
 		<?php endif; ?>
-	
-		[config-section-data]
 
 		<section aria-labelledby="wordpress-updates">
 			<div class="flow section-heading-spacer">
@@ -588,10 +586,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 				</tbody>
 			</table>
 		</section>
-
-		[/config-section-data]
-
-		[config-section-data]
 
 		<section aria-labelledby="theme-updates">
 			<div class="flow section-heading-spacer">
@@ -624,10 +618,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 			</table>
 		</section>
 
-		[/config-section-data]
-
-		[config-section-data]
-
 		<section aria-labelledby="plugin-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="plugin-updates">Plugin-Updates</h2>
@@ -658,8 +648,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 				</tbody>
 			</table>
 		</section>
-
-		[/config-section-data]
 
 		<?php if ($isModuleActiveBackups): ?>
 
@@ -709,8 +697,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		<?php if ($isModuleActiveMaintenance): ?>
 
-		[config-section-data]
-
 		<section aria-labelledby="database-cleanups">
 			<div class="flow section-heading-spacer">
 				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
@@ -737,8 +723,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 				</tbody>
 			</table>
 		</section>
-
-		[/config-section-data]
 
 		<?php endif; ?>
 
