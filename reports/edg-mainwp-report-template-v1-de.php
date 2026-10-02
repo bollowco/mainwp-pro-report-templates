@@ -233,6 +233,10 @@ $supportMessagingId = 'bollowco';
 			width: 35%;
 		}
 
+		.table-column-size--45 {
+			width: 45%;
+		}
+
 		.table-column-size--50 {
 			width: 50%;
 		}
@@ -520,7 +524,7 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--45">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--40">Zeitpunkt</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -554,8 +558,8 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th">Zeitpunkt</th>
-						<th scope="col" class="th table-column-size--35">Theme</th>
+						<th scope="col" class="th table-column-size--30">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--30">Theme</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -590,8 +594,8 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th">Zeitpunkt</th>
-						<th scope="col" class="th table-column-size--35">Plugin</th>
+						<th scope="col" class="th table-column-size--30">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--30">Plugin</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
