@@ -10,28 +10,12 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-$printSectionVisibility = function ($option = null) use ($report) {
-	$sections = json_decode($report->showhide_sections, true) ?? [];
-
-	$options = [
-		0 => '[hide-if-empty]',
-		1 => '', // => Show report data
-		2 => '[hide-section-data]'
-	];
-
-	$option = array_key_exists($option, $sections) ? $sections[$option] : 2;
-
-	return $options[$option];
-};
-
 $isModuleActiveAnalytics = is_plugin_active('mainwp-google-analytics-extension/mainwp-google-analytics-extension.php');
 $isModuleActiveLighthouse = is_plugin_active('mainwp-lighthouse-extension/mainwp-lighthouse-extension.php');
 $isModuleActiveUptime = is_plugin_active('advanced-uptime-monitor-extension/advanced-uptime-monitor-extension.php');
 $isModuleActiveMaintenance = is_plugin_active('mainwp-maintenance-extension/mainwp-maintenance-extension.php');
 $isModuleActiveBackups = is_plugin_active('wpvivid-backup-mainwp/wpvivid-backup-mainwp.php');
 $isModuleActiveVulnerabilityChecker = is_plugin_active('mainwp-vulnerability-checker-extension/mainwp-vulnerability-checker-extension.php');
-
-$reportTitle = $report->heading;
 
 const SUPPORT_EMAIL = 'edgar@edgarbollow.com';
 const SUPPORT_MESSAGING_ID = 'bollowco';
@@ -253,7 +237,7 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		</header>
 
 		<section aria-labelledby="report-title" class="flow">
-			<h1 id="report-title"><?= esc_html($reportTitle) ?></h1>
+			<h1 id="report-title">Website-Statusbericht</h1>
 			<div class="flow">
 				<p class="text--narrow">Hier ist dein Überblick: wie es deiner Website geht und was ich in diesem Zeitraum für sie erledigt habe. Danke, dass du sie mir anvertraust.</p>
 				<p class="text--narrow">Jeder Abschnitt ist kurz erklärt, du brauchst also kein Technikwissen. Abschnitte, in denen sich nichts getan hat, werden ausgeblendet.</p>
@@ -279,7 +263,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('ga') ?>
 
 					<tr>
 						<th scope="row">Besuche</th>
@@ -294,7 +277,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="2" /]
-					<?= $printSectionVisibility('lighthouse') ?>
 
 					<tr>
 						<th scope="row">Geschwindigkeit: Computer</th>
@@ -313,7 +295,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('uptime') ?>
 
 					<tr>
 						<th scope="row">Verfügbarkeit</th>
@@ -331,7 +312,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('wp-update') ?>
 
 					<tr>
 						<th scope="row">Updates: WordPress</th>
@@ -342,7 +322,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('themes-updates') ?>
 
 					<tr>
 						<th scope="row">Updates: Themes</th>
@@ -353,7 +332,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('plugins-updates') ?>
 
 					<tr>
 						<th scope="row">Updates: Plugins</th>
@@ -366,7 +344,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('backups') ?>
 
 					<tr>
 						<th scope="row">Erstellte Backups</th>
@@ -381,7 +358,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 					[config-section-data]
 					[config-section-extra max-empty="1" /]
-					<?= $printSectionVisibility('maintenance') ?>
 
 					<tr>
 						<th scope="row">Datenbankbereinigungen</th>
@@ -422,7 +398,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		[config-section-data]
 		[config-section-extra max-empty="7" /]
-		<?= $printSectionVisibility('ga') ?>
 
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
@@ -491,7 +466,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		[config-section-data]
 		[config-section-extra max-empty="10" /]
-		<?= $printSectionVisibility('lighthouse') ?>
 
 		<section aria-labelledby="performance">
 			<div class="flow section-heading-spacer">
@@ -557,7 +531,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		[config-section-data]
 		[config-section-extra max-empty="2" /]
-		<?= $printSectionVisibility('uptime') ?>
 
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
@@ -586,7 +559,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		<?php endif; ?>
 	
 		[config-section-data]
-		<?= $printSectionVisibility('wp-update') ?>
 
 		<section aria-labelledby="wordpress-updates">
 			<div class="flow section-heading-spacer">
@@ -620,7 +592,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		[/config-section-data]
 
 		[config-section-data]
-		<?= $printSectionVisibility('themes-updates') ?>
 
 		<section aria-labelledby="theme-updates">
 			<div class="flow section-heading-spacer">
@@ -656,7 +627,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		[/config-section-data]
 
 		[config-section-data]
-		<?= $printSectionVisibility('plugins-updates') ?>
 
 		<section aria-labelledby="plugin-updates">
 			<div class="flow section-heading-spacer">
@@ -695,7 +665,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		[config-section-data]
 		[config-section-extra max-empty="1" /]
-		<?= $printSectionVisibility('backups') ?>
 
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
@@ -741,7 +710,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 		<?php if ($isModuleActiveMaintenance): ?>
 
 		[config-section-data]
-		<?= $printSectionVisibility('maintenance') ?>
 
 		<section aria-labelledby="database-cleanups">
 			<div class="flow section-heading-spacer">
@@ -813,9 +781,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 
 		<?php endif; ?>
 
-		[config-section-data]
-		<?= $printSectionVisibility('users') ?>
-
 		<section aria-labelledby="new-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="new-users">Neue Benutzerkonten</h2>
@@ -847,11 +812,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 			</table>
 		</section>
 
-		[/config-section-data]
-
-		[config-section-data]
-		<?= $printSectionVisibility('users') ?>
-
 		<section aria-labelledby="deleted-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="deleted-users">Gelöschte Benutzerkonten</h2>
@@ -882,8 +842,6 @@ const SUPPORT_MESSAGING_ID = 'bollowco';
 				</tbody>
 			</table>
 		</section>
-
-		[/config-section-data]
 
 	</main>
 </body>
