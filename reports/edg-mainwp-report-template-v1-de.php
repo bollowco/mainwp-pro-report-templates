@@ -562,8 +562,8 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--30">Zeitpunkt</th>
-						<th scope="col" class="th table-column-size--30">Theme</th>
+						<th scope="col" class="th table-column-size--25">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--35">Theme</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -598,8 +598,8 @@ $supportMessagingId = 'bollowco';
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--30">Zeitpunkt</th>
-						<th scope="col" class="th table-column-size--30">Plugin</th>
+						<th scope="col" class="th table-column-size--25">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--35">Plugin</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
