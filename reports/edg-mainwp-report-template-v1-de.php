@@ -32,8 +32,8 @@ $isModuleActiveBackups = is_plugin_active('wpvivid-backup-mainwp/wpvivid-backup-
 
 $reportTitle = $report->heading;
 
-$supportEmail = 'edgar@edgarbollow.com';
-$supportMessagingId = 'bollowco';
+const SUPPORT_EMAIL = 'edgar@edgarbollow.com';
+const SUPPORT_MESSAGING_ID = 'bollowco';
 
 // MainWP Pro Reports renders the PDF with `dompdf`, which supports only a subset of HTML and CSS. Markup and styles are kept simple on purpose. Properties `dompdf` doesn’t support are ignored there.
 ?>
@@ -256,7 +256,7 @@ $supportMessagingId = 'bollowco';
 			<div class="flow">
 				<p class="text--narrow">Hier ist dein Überblick: wie es deiner Website geht und was ich in diesem Zeitraum für sie erledigt habe. Danke, dass du sie mir anvertraust.</p>
 				<p class="text--narrow">Jeder Abschnitt ist kurz erklärt, du brauchst also kein Technikwissen. Abschnitte, in denen sich nichts getan hat, werden ausgeblendet.</p>
-				<p class="text--narrow">Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder per <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
+				<p class="text--narrow">Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= esc_url('mailto:' . SUPPORT_EMAIL) ?>">E-Mail</a> oder per <a href="<?= esc_url('https://wa.me/' . SUPPORT_MESSAGING_ID) ?>" rel="external">WhatsApp</a>.</p>
 			</div>
 		</section>
 
@@ -266,7 +266,7 @@ $supportMessagingId = 'bollowco';
 
 					<tr>
 						<th scope="row">Website</th>
-						<td><a href="[client.site.url]?utm_" rel="external">[client.site.name]</a></td>
+						<td><a href="[client.site.url]" rel="external">[client.site.name]</a></td>
 					</tr>
 
 					<tr>
@@ -324,7 +324,7 @@ $supportMessagingId = 'bollowco';
 					<?php endif; ?>
 
 					<tr>
-						<th scope="row">WordPress-Version</th>
+						<th scope="row">Aktuelle WordPress-Version</th>
 						<td>[client.site.version]</td>
 					</tr>
 
@@ -551,7 +551,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
 				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
-				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% rund 7 Stunden.</p>
+				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% ca. 7 Stunden.</p>
 			</div>
 			<table>
 				<tbody>
@@ -711,7 +711,7 @@ $supportMessagingId = 'bollowco';
 
 					<tr>
 						<th scope="row">Speicherort</th>
-						<td>Bei Hetzner in Deutschland, getrennt vom Server deiner Website, jede Website in einem eigenen, abgetrennten Bereich</td>
+						<td>Bei Hetzner in Deutschland; getrennt vom Server deiner Website; jede Website in einem eigenen, abgetrennten Bereich</td>
 					</tr>
 
 					<tr>
