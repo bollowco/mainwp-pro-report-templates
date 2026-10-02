@@ -60,11 +60,11 @@ $supportMessagingId = 'bollowco';
 		}
 
 		body {
-			padding: 3.75rem;
+			padding: 60px;
 			color: #212121;
 			background-color: #fff;
 			font-family: ui-sans-serif, system-ui, sans-serif;
-			font-size: .8125rem;
+			font-size: 13px;
 			font-weight: 400;
 			line-height: 1.5;
 			overflow-wrap: break-word;
@@ -121,13 +121,13 @@ $supportMessagingId = 'bollowco';
 		}
 
 		h1 {
-			font-size: 2.25rem;
+			font-size: 36px;
 			line-height: 1.2;
 			letter-spacing: -.01em;
 		}
 
 		h2 {
-			font-size: 1.5rem;
+			font-size: 24px;
 			line-height: 1.3;
 			letter-spacing: -.00875em;
 		}
@@ -139,11 +139,11 @@ $supportMessagingId = 'bollowco';
 
 		table {
 			border-width: 1px;
-			border-radius: .5rem;
+			border-radius: 8px;
 			overflow: clip;
 			overflow: hidden;
 			background-color: #fff;
-			font-size: .6875rem;
+			font-size: 11px;
 			line-height: 1.3;
 		}
 
@@ -159,7 +159,7 @@ $supportMessagingId = 'bollowco';
 
 		th,
 		td {
-			padding: .5rem .75rem;
+			padding: 8px 12px;
 			vertical-align: top;
 			border-right-width: 1px;
 			border-bottom-width: 1px;
@@ -176,39 +176,38 @@ $supportMessagingId = 'bollowco';
 		}
 
 		header {
-			margin-bottom: 6.25rem;
+			margin-bottom: 80px;
 			text-align: right;
 			line-height: 0;
 		}
 
 		header img {
 			display: inline-block;
-			width: 160px;
-			filter: grayscale(1);
+			width: 120px;
 		}
 
 		figure {
-			padding: 2.5rem;
+			padding: 40px;
 			border-width: 1px;
-			border-radius: .5rem;
+			border-radius: 8px;
 		}
 
 		figcaption {
-			margin-top: 2.5rem;
-			padding-top: 1.25rem;
+			margin-top: 40px;
+			padding-top: 20px;
 			border-top-width: 1px;
 			color: #717171;
-			font-size: .6875rem;
+			font-size: 11px;
 			line-height: 1.3;
 			font-style: italic;
 		}
 
 		.flow {
-			--_spacer: 1.25em;
+			--_spacer: 20px;
 		}
 
 		.flow--wide {
-			--_spacer: 3.75rem;
+			--_spacer: 54px;
 		}
 
 		.flow > * + * {
@@ -219,8 +218,12 @@ $supportMessagingId = 'bollowco';
 			margin-top: 0;
 		}
 
+		.text--narrow {
+			max-width: 550px;
+		}
+
 		.section-heading-spacer {
-			margin-bottom: 2.5rem;
+			margin-bottom: 36px;
 		}
 
 		.page-break {
@@ -251,9 +254,9 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="report-title" class="flow">
 			<h1 id="report-title"><?= esc_html($reportTitle) ?></h1>
 			<div class="flow">
-				<p>Hier ist dein Überblick: wie es deiner Website geht und was ich in diesem Zeitraum für sie erledigt habe. Danke, dass du sie mir anvertraust.</p>
-				<p>Jeder Abschnitt ist kurz erklärt, du brauchst also kein Technikwissen. Abschnitte, in denen sich nichts getan hat, werden ausgeblendet.</p>
-				<p>Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder per <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
+				<p class="text--narrow">Hier ist dein Überblick: wie es deiner Website geht und was ich in diesem Zeitraum für sie erledigt habe. Danke, dass du sie mir anvertraust.</p>
+				<p class="text--narrow">Jeder Abschnitt ist kurz erklärt, du brauchst also kein Technikwissen. Abschnitte, in denen sich nichts getan hat, werden ausgeblendet.</p>
+				<p class="text--narrow">Fragen oder Wünsche? Schreib mir einfach eine <a href="<?= "mailto:{$supportEmail}" ?>">E-Mail</a> oder per <a href="<?= "https://wa.me/{$supportMessagingId}" ?>" rel="external">WhatsApp</a>.</p>
 			</div>
 		</section>
 
@@ -263,7 +266,7 @@ $supportMessagingId = 'bollowco';
 
 					<tr>
 						<th scope="row">Website</th>
-						<td><a href="[client.site.url]" rel="external">[client.site.name]</a></td>
+						<td><a href="[client.site.url]?utm_" rel="external">[client.site.name]</a></td>
 					</tr>
 
 					<tr>
@@ -312,7 +315,7 @@ $supportMessagingId = 'bollowco';
 					<?= $printSectionVisibility('uptime') ?>
 
 					<tr>
-						<th scope="row">Verfügbarkeit (30 Tage)</th>
+						<th scope="row">Verfügbarkeit</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
@@ -413,7 +416,8 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
 				<h2 id="analytics">Besucher deiner Website</h2>
-				<p>Hier siehst du, wie oft deine Website in diesem Zeitraum besucht wurde und was die Besucher dort getan haben. Gemessen wird mit Google Analytics, einem Statistikdienst von Google. Jede Zahl ist darunter kurz erklärt. Schwankungen von Monat zu Monat sind ganz normal.</p>
+				<p class="text--narrow">Hier siehst du, wie oft deine Website in diesem Zeitraum besucht wurde und was die Besucher dort getan haben. Gemessen wird mit Google Analytics, einem Statistikdienst von Google. Jede Zahl ist darunter kurz erklärt. Schwankungen von Monat zu Monat sind ganz normal.</p>
+				<p class="text--narrow">Wichtig zum Einordnen: Gezählt werden nur Besucher, die im Cookie-Hinweis der Statistik zugestimmt haben. Wer ablehnt oder einen Werbeblocker nutzt, taucht in den Zahlen gar nicht auf und das ist oft ein großer Teil, nicht selten die Hälfte. Die tatsächliche Zahl der Besuche liegt also spürbar höher. Für den Vergleich von Monat zu Monat taugen die Zahlen trotzdem, solange der Cookie-Hinweis gleich bleibt.</p>
 			</div>
 			<table class="section-heading-spacer">
 				<tbody>
@@ -481,12 +485,13 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="performance">
 			<div class="flow section-heading-spacer">
 				<h2 id="performance">Technischer Check deiner Website</h2>
-				<p>Hier siehst du das Ergebnis automatischer Tests, die regelmäßig prüfen, wie schnell deine Website lädt und wie sauber sie technisch gebaut ist. Getestet wird mit Google Lighthouse (PageSpeed Insights), einem kostenlosen Werkzeug von Google, jeweils für Computer und Handy. Jeder Bereich bekommt bis zu 100 Punkte: 90 bis 100 ist gut, 50 bis 89 ausbaufähig, unter 50 schwach.</p>
+				<p class="text--narrow">Hier siehst du das Ergebnis automatischer Tests, die regelmäßig prüfen, wie schnell deine Website lädt und wie sauber sie technisch gebaut ist. Getestet wird mit Google Lighthouse (PageSpeed Insights), einem kostenlosen Werkzeug von Google, jeweils für Computer und Handy. Jeder Bereich bekommt bis zu 100 Punkte: 90 bis 100 ist gut, 50 bis 89 ausbaufähig, unter 50 schwach.</p>
+				<p class="text--narrow">Zur Einordnung: Die Werte schwanken von Messung zu Messung um ein paar Punkte, je nachdem, wie ausgelastet Netz, Server und Testrechner gerade sind. Ein einzelner Wert ist deshalb eine Momentaufnahme, aussagekräftiger ist der Vergleich mit den vorherigen Berichten. Auf dem Handy fallen die Werte meist niedriger aus, weil der Test ein Mittelklasse-Handy mit langsamer Mobilfunkverbindung nachstellt. Zum Vergleich: Laut einer Auswertung von Millionen Websites (HTTP Archive, 2024) liegt bei der Hälfte aller WordPress-Websites der Handy-Wert unter 40 Punkten. 100 Punkte sind also weder üblich noch nötig.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" aria-hidden="true" class="th table-column-size--30"></th>
+						<th scope="col" aria-label="Kategorie" class="th table-column-size--30"></th>
 						<th scope="col" class="th">Computer</th>
 						<th scope="col" class="th">Handy</th>
 						<th scope="col" class="th table-column-size--30">Was bedeutet das?</th>
@@ -546,7 +551,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
 				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
-				<p>Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% rund 7 Stunden.</p>
+				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% rund 7 Stunden.</p>
 			</div>
 			<table>
 				<tbody>
@@ -575,7 +580,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="wordpress-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="wordpress-updates">WordPress-Updates</h2>
-				<p>WordPress ist die Software, auf der deine Website läuft. Mit Updates werden Sicherheitslücken geschlossen und Fehler behoben. Die Tabelle zeigt, wann von welcher auf welche Version aktualisiert wurde (höhere Zahl = neuere Version).</p>
+				<p class="text--narrow">WordPress ist die Software, auf der deine Website läuft. Mit Updates werden Sicherheitslücken geschlossen und Fehler behoben. Die Tabelle zeigt, wann von welcher auf welche Version aktualisiert wurde (höhere Zahl = neuere Version).</p>
 			</div>
 			<table>
 				<thead>
@@ -609,7 +614,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="theme-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="theme-updates">Theme-Updates</h2>
-				<p>Das Theme ist die Grundlage für Aufbau und Gestaltung deiner Website. Updates halten es mit neuen WordPress-Versionen kompatibel und schließen Sicherheitslücken. Das Aussehen deiner Website ändert sich dadurch in der Regel nicht. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
+				<p class="text--narrow">Das Theme ist die Grundlage für Aufbau und Gestaltung deiner Website. Updates halten es mit neuen WordPress-Versionen kompatibel und schließen Sicherheitslücken. Das Aussehen deiner Website ändert sich dadurch in der Regel nicht. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
 			</div>
 			<table>
 				<thead>
@@ -645,7 +650,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="plugin-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="plugin-updates">Plugin-Updates</h2>
-				<p>Plugins sind Zusatzprogramme, die deine Website um Funktionen erweitern, zum Beispiel ein Kontaktformular oder Suchmaschinen-Einstellungen. Die meisten Sicherheitslücken bei WordPress-Seiten entstehen in Plugins, deshalb sind diese Updates besonders wichtig. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
+				<p class="text--narrow">Plugins sind Zusatzprogramme, die deine Website um Funktionen erweitern, zum Beispiel ein Kontaktformular oder Suchmaschinen-Einstellungen. Die meisten Sicherheitslücken bei WordPress-Seiten entstehen in Plugins, deshalb sind diese Updates besonders wichtig. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
 			</div>
 			<table>
 				<thead>
@@ -684,7 +689,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
 				<h2 id="backups">Backups</h2>
-				<p>Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, etwa durch einen Fehler, einen Hackerangriff oder ein missglücktes Update, kann deine Website auf einen früheren Stand zurückgesetzt werden, bis zu drei Monate zurück. Die Sicherungen laufen vollautomatisch, du musst dafür nichts tun.</p>
+				<p class="text--narrow">Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, etwa durch einen Fehler, einen Hackerangriff oder ein missglücktes Update, kann deine Website auf einen früheren Stand zurückgesetzt werden, bis zu drei Monate zurück. Die Sicherungen laufen vollautomatisch, du musst dafür nichts tun.</p>
 			</div>
 			<table>
 				<tbody>
@@ -730,7 +735,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="database-cleanups">
 			<div class="flow section-heading-spacer">
 				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
-				<p>Deine Website speichert Texte, Seiten, Kommentare und Einstellungen in einer Datenbank. Dort sammeln sich mit der Zeit Reste an, die niemand mehr braucht, zum Beispiel Spam-Kommentare oder veraltete Zwischenspeicher-Einträge. Sie werden regelmäßig automatisch entfernt. Hier siehst du, wann das zuletzt passiert ist.</p>
+				<p class="text--narrow">Deine Website speichert Texte, Seiten, Kommentare und Einstellungen in einer Datenbank. Dort sammeln sich mit der Zeit Reste an, die niemand mehr braucht, zum Beispiel Spam-Kommentare oder veraltete Zwischenspeicher-Einträge. Sie werden regelmäßig automatisch entfernt. Hier siehst du, wann das zuletzt passiert ist.</p>
 			</div>
 			<table>
 				<thead>
@@ -764,7 +769,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="new-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="new-users">Neue Benutzerkonten</h2>
-				<p>Hier siehst du, welche Benutzerkonten in diesem Zeitraum auf deiner Website angelegt wurden. Die Rolle bestimmt, was jemand darf: Administratoren dürfen alles, Redakteure Inhalte bearbeiten und veröffentlichen, aber keine Einstellungen ändern. Prüf kurz, ob du jedes neue Konto kennst. Ein unbekanntes Konto, vor allem mit Administrator-Rechten, kann ein Zeichen dafür sein, dass sich jemand unbefugt Zugang verschafft hat. Dann melde dich bitte sofort.</p>
+				<p class="text--narrow">Hier siehst du, welche Benutzerkonten in diesem Zeitraum auf deiner Website angelegt wurden. Die Rolle bestimmt, was jemand darf: Administratoren dürfen alles, Redakteure Inhalte bearbeiten und veröffentlichen, aber keine Einstellungen ändern. Prüf kurz, ob du jedes neue Konto kennst. Ein unbekanntes Konto, vor allem mit Administrator-Rechten, kann ein Zeichen dafür sein, dass sich jemand unbefugt Zugang verschafft hat. Dann melde dich bitte sofort.</p>
 			</div>
 			<table>
 				<thead>
@@ -800,7 +805,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="deleted-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="deleted-users">Gelöschte Benutzerkonten</h2>
-				<p>Hier siehst du, welche Benutzerkonten in diesem Zeitraum gelöscht wurden und von wem. Das passiert zum Beispiel, wenn jemand dein Team verlässt. Prüf auch hier, ob jede Löschung von dir oder deinem Team stammt. Verlässt jemand dein Team, sollte sein Konto immer gelöscht werden. Offene Konten ehemaliger Mitarbeiter sind ein häufiges Einfallstor.</p>
+				<p class="text--narrow">Hier siehst du, welche Benutzerkonten in diesem Zeitraum gelöscht wurden und von wem. Das passiert zum Beispiel, wenn jemand dein Team verlässt. Prüf auch hier, ob jede Löschung von dir oder deinem Team stammt. Verlässt jemand dein Team, sollte sein Konto immer gelöscht werden. Offene Konten ehemaliger Mitarbeiter sind ein häufiges Einfallstor.</p>
 			</div>
 			<table>
 				<thead>
