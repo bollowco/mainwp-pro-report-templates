@@ -233,6 +233,10 @@ $supportMessagingId = 'bollowco';
 			width: 35%;
 		}
 
+		.table-column-size--40 {
+			width: 40%;
+		}
+
 		.table-column-size--45 {
 			width: 45%;
 		}
