@@ -301,14 +301,14 @@ $supportMessagingId = 'bollowco';
 					<?php if ($isModuleActiveUptime): ?>
 
 					<tr>
-						<th scope="row">Verfügbarkeit (letzte 30 Tage)</th>
+						<th scope="row">Erreichbarkeit (letzte 30 Tage)</th>
 						<td>[aum.uptime30]</td>
 					</tr>
 
 					<?php endif; ?>
 
 					<tr>
-						<th scope="row">Aktuelle WordPress-Version</th>
+						<th scope="row">Installierte WordPress-Version</th>
 						<td>[client.site.version]</td>
 					</tr>
 
@@ -373,8 +373,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
 				<h2 id="analytics">Besucher deiner Website</h2>
-				<p class="text--narrow">Hier siehst du, wie oft deine Website in diesem Zeitraum besucht wurde und was die Besucher dort getan haben. Gemessen wird mit Google Analytics, einem Statistikdienst von Google. Jede Zahl ist darunter kurz erklärt. Schwankungen von Monat zu Monat sind ganz normal.</p>
-				<p class="text--narrow">Wichtig zum Einordnen: Gezählt werden nur Besucher, die im Cookie-Hinweis der Statistik zugestimmt haben. Wer ablehnt oder einen Werbeblocker nutzt, taucht in den Zahlen gar nicht auf und das ist oft ein großer Teil, nicht selten die Hälfte. Die tatsächliche Zahl der Besuche liegt also spürbar höher. Für den Vergleich von Monat zu Monat taugen die Zahlen trotzdem, solange der Cookie-Hinweis gleich bleibt.</p>
+				<p class="text--narrow">Hier siehst du, wie oft deine Website besucht wurde, gemessen mit Google Analytics. Gezählt wird nur, wer im Cookie-Hinweis zustimmt. Die echten Zahlen liegen also höher, für den Vergleich von Monat zu Monat taugen sie trotzdem.</p>
 			</div>
 			<table class="section-heading-spacer">
 				<tbody>
@@ -425,7 +424,7 @@ $supportMessagingId = 'bollowco';
 			</table>
 			<figure>
 				[ga.visits.chart]
-				<figcaption>Besuche grafisch dargestellt ([ga.startdate] – [ga.enddate])</figcaption>
+				<figcaption>Besuche im Verlauf ([ga.startdate] – [ga.enddate])</figcaption>
 			</figure>
 		</section>
 
@@ -436,8 +435,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="performance">
 			<div class="flow section-heading-spacer">
 				<h2 id="performance">Technischer Check deiner Website</h2>
-				<p class="text--narrow">Hier siehst du das Ergebnis automatischer Tests, die regelmäßig prüfen, wie schnell deine Website lädt und wie sauber sie technisch gebaut ist. Getestet wird mit Google Lighthouse (PageSpeed Insights), einem kostenlosen Werkzeug von Google, jeweils für Computer und Handy. Jeder Bereich bekommt bis zu 100 Punkte: 90 bis 100 ist gut, 50 bis 89 ausbaufähig, unter 50 schwach.</p>
-				<p class="text--narrow">Zur Einordnung: Die Werte schwanken von Messung zu Messung um ein paar Punkte, je nachdem, wie ausgelastet Netz, Server und Testrechner gerade sind. Ein einzelner Wert ist deshalb eine Momentaufnahme, aussagekräftiger ist der Vergleich mit den vorherigen Berichten. Auf dem Handy fallen die Werte meist niedriger aus, weil der Test ein Mittelklasse-Handy mit langsamer Mobilfunkverbindung nachstellt. Zum Vergleich: Laut einer Auswertung von Millionen Websites (HTTP Archive, 2024) liegt bei der Hälfte aller WordPress-Websites der Handy-Wert unter 40 Punkten. 100 Punkte sind also weder üblich noch nötig.</p>
+				<p class="text--narrow">Google testet automatisch, wie schnell deine Website lädt und wie sauber sie gebaut ist, am Computer und am Handy. 90 bis 100 Punkte sind sehr gut. Die Werte schwanken etwas, am Handy sind sie meist niedriger. Zum Vergleich: Die Hälfte aller WordPress-Seiten liegt am Handy unter 40 Punkten (Stand 2024).</p>
 			</div>
 			<table>
 				<thead>
@@ -445,7 +443,7 @@ $supportMessagingId = 'bollowco';
 						<th scope="col" aria-label="Kategorie" class="th table-column-size--25"></th>
 						<th scope="col" class="th">Computer</th>
 						<th scope="col" class="th">Handy</th>
-						<th scope="col" class="th table-column-size--35">Was bedeutet das?</th>
+						<th scope="col" class="th table-column-size--35">Erklärung</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -468,7 +466,7 @@ $supportMessagingId = 'bollowco';
 						<th scope="row">Technische Qualität</th>
 						<td>[lighthouse.bestpractices.desktop]/100</td>
 						<td>[lighthouse.bestpractices.mobile]/100</td>
-						<td>Ob deine Seite nach aktuellen technischen Standards gebaut ist, zum Beispiel mit verschlüsselter Verbindung (HTTPS) und ohne versteckte Fehlermeldungen im Hintergrund.</td>
+						<td>Ob deine Seite nach aktuellen technischen Standards gebaut ist, zum Beispiel mit sicherer Verbindung (HTTPS) und ohne versteckte Fehlermeldungen im Hintergrund.</td>
 					</tr>
 
 					<tr>
@@ -495,8 +493,8 @@ $supportMessagingId = 'bollowco';
 
 		<section aria-labelledby="uptime">
 			<div class="flow section-heading-spacer">
-				<h2 id="uptime">Verfügbarkeit deiner Website</h2>
-				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war: Der Wert zeigt, in wie viel Prozent der Zeit sie für Besucher aufrufbar war. Dafür wird regelmäßig von außen geprüft, ob deine Website antwortet. Zur Einordnung: 99,9&nbsp;% entsprechen rund 43 Minuten Ausfall in 30 Tagen, 99&nbsp;% rund 7 Stunden.</p>
+				<h2 id="uptime">Erreichbarkeit deiner Website</h2>
+				<p class="text--narrow">Hier siehst du, wie zuverlässig deine Website online war. Dafür wird regelmäßig von außen geprüft, ob sie antwortet. Zur Einordnung: 99,9&nbsp;% heißt rund 43 Minuten Ausfall im Monat.</p>
 			</div>
 			<table>
 				<tbody>
@@ -523,12 +521,12 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="wordpress-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="wordpress-updates">WordPress-Updates</h2>
-				<p class="text--narrow">WordPress ist die Software, auf der deine Website läuft. Mit Updates werden Sicherheitslücken geschlossen und Fehler behoben. Die Tabelle zeigt, wann von welcher auf welche Version aktualisiert wurde (höhere Zahl = neuere Version).</p>
+				<p class="text--narrow">WordPress ist die Software, auf der deine Website läuft. Updates schließen Sicherheitslücken und beheben Fehler.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--40">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--40">Datum</th>
 						<th scope="col" class="th">Alte Version</th>
 						<th scope="col" class="th">Aktuelle Version</th>
 					</tr>
@@ -557,15 +555,15 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="theme-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="theme-updates">Theme-Updates</h2>
-				<p class="text--narrow">Das Theme ist die Grundlage für Aufbau und Gestaltung deiner Website. Updates halten es mit neuen WordPress-Versionen kompatibel und schließen Sicherheitslücken. Das Aussehen deiner Website ändert sich dadurch in der Regel nicht. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
+				<p class="text--narrow">Das Theme ist das Grundgerüst für Aufbau und Gestaltung deiner Website. Updates halten es sicher und aktuell, am Aussehen ändert sich dabei in der Regel nichts.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--25">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--25">Datum</th>
 						<th scope="col" class="th table-column-size--35">Theme</th>
-						<th scope="col" class="th">Alte Version</th>
-						<th scope="col" class="th">Aktuelle Version</th>
+						<th scope="col" class="th">Vorher</th>
+						<th scope="col" class="th">Nachher</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -593,15 +591,15 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="plugin-updates">
 			<div class="flow section-heading-spacer">
 				<h2 id="plugin-updates">Plugin-Updates</h2>
-				<p class="text--narrow">Plugins sind Zusatzprogramme, die deine Website um Funktionen erweitern, zum Beispiel ein Kontaktformular oder Suchmaschinen-Einstellungen. Die meisten Sicherheitslücken bei WordPress-Seiten entstehen in Plugins, deshalb sind diese Updates besonders wichtig. Die Tabelle zeigt, was wann aktualisiert wurde (höhere Zahl = neuere Version).</p>
+				<p class="text--narrow">Plugins sind Erweiterungen, zum Beispiel für das Kontaktformular. Hier entstehen die meisten Sicherheitslücken, deshalb sind diese Updates besonders wichtig.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--25">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--25">Datum</th>
 						<th scope="col" class="th table-column-size--35">Plugin</th>
-						<th scope="col" class="th">Alte Version</th>
-						<th scope="col" class="th">Aktuelle Version</th>
+						<th scope="col" class="th">Vorher</th>
+						<th scope="col" class="th">Nachher</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -628,7 +626,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
 				<h2 id="backups">Backups</h2>
-				<p class="text--narrow">Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, etwa durch einen Fehler, einen Hackerangriff oder ein missglücktes Update, kann deine Website auf einen früheren Stand zurückgesetzt werden, bis zu drei Monate zurück. Die Sicherungen laufen vollautomatisch, du musst dafür nichts tun.</p>
+				<p class="text--narrow">Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, kann sie auf einen früheren Stand zurückgesetzt werden. Das läuft automatisch, du musst nichts tun.</p>
 			</div>
 			<table>
 				<tbody>
@@ -640,21 +638,21 @@ $supportMessagingId = 'bollowco';
 
 					<tr>
 						<th scope="row">Dateien (z.&nbsp;B. Bilder, Theme, Plugins)</th>
-						<td>Alle 8 Stunden, einmal pro Woche vollständig, dazwischen nur die Änderungen</td>
+						<td>Alle 8 Stunden</td>
 					</tr>
 
 					<tr>
 						<th scope="row">Wie weit zurück</th>
-						<td>Drei Monate</td>
+						<td>3 Monate</td>
 					</tr>
 
 					<tr>
-						<th scope="row">Speicherort</th>
-						<td>Bei Hetzner in Deutschland; getrennt vom Server deiner Website; jede Website in einem eigenen, abgetrennten Bereich</td>
+						<th scope="row">Wo gespeichert</th>
+						<td>Bei Hetzner in Deutschland, getrennt von deiner Website</td>
 					</tr>
 
 					<tr>
-						<th scope="row">Erstellte Backups in diesem Zeitraum</th>
+						<th scope="row">Backups in diesem Zeitraum</th>
 						<td>[backup.created.count]</td>
 					</tr>
 
@@ -672,12 +670,12 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="database-cleanups">
 			<div class="flow section-heading-spacer">
 				<h2 id="database-cleanups">Datenbankbereinigungen</h2>
-				<p class="text--narrow">Deine Website speichert Texte, Seiten, Kommentare und Einstellungen in einer Datenbank. Dort sammeln sich mit der Zeit Reste an, die niemand mehr braucht, zum Beispiel Spam-Kommentare oder veraltete Zwischenspeicher-Einträge. Sie werden regelmäßig automatisch entfernt. Hier siehst du, wann das zuletzt passiert ist.</p>
+				<p class="text--narrow">In der Datenbank deiner Website sammeln sich mit der Zeit Reste an, die keiner mehr braucht. Sie werden regelmäßig automatisch aufgeräumt.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th table-column-size--30">Zeitpunkt</th>
+						<th scope="col" class="th table-column-size--30">Datum</th>
 						<th scope="col" class="th">Was passiert ist</th>
 					</tr>
 				</thead>
@@ -700,33 +698,35 @@ $supportMessagingId = 'bollowco';
 
 		<?php endif; ?>
 
-		<?php if ($isModuleActiveVulnerabilityChecker && $isModuleActiveSslMonitor): ?>
+		<?php if ($isModuleActiveVulnerabilityChecker || $isModuleActiveSslMonitor): ?>
 
 		<section aria-labelledby="security">
 			<div class="flow section-heading-spacer">
 				<h2 id="security">Sicherheit deiner Website</h2>
-				<p class="text--narrow">Hier siehst du, ob deine Website gut geschützt ist. Geprüft wird automatisch: täglich auf bekannte Sicherheitslücken in Plugins und Themes, wöchentlich das Zertifikat für die verschlüsselte Verbindung.</p>
+				<p class="text--narrow">Hier siehst du, ob deine Website gut geschützt ist. Plugins und Themes werden täglich auf bekannte Sicherheitslücken geprüft, die sichere Verbindung wöchentlich.</p>
 			</div>
 			<table>
 				<tbody>
 
+					<?php if ($isModuleActiveVulnerabilityChecker): ?>
+
 					<tr>
 						<th scope="row">Bekannte Sicherheitslücken</th>
 						<td>[vulnerabilities.count]</td>
-						<td class="table-column-size--45">Zeigt, ob zum Zeitpunkt des Berichts für ein Plugin oder Theme deiner Website eine Sicherheitslücke bekannt ist. Jeder Treffer wird geprüft und so schnell wie möglich behoben, meist durch ein Update.</td>
+						<td class="table-column-size--45">0 heißt: keine bekannte Lücke. Jeder Treffer wird geprüft und schnell behoben, meist per Update.</td>
 					</tr>
 
-					<tr>
-						<th scope="row">Letzte Prüfung</th>
-						<td>[vulnerable.checkdate]</td>
-						<td>Wann die Prüfung zuletzt gelaufen ist.</td>
-					</tr>
+					<?php endif; ?>
+
+					<?php if ($isModuleActiveSslMonitor): ?>
 
 					<tr>
-						<th scope="row">Verschlüsselte Verbindung (HTTPS)</th>
+						<th scope="row">Sichere Verbindung (HTTPS)</th>
 						<td>Gültig bis [ssl.monitor.valid.to]</td>
-						<td>Das Zertifikat sorgt für das Schloss-Symbol im Browser und schützt die Daten deiner Besucher unterwegs. Es verlängert sich automatisch, zusätzlich wird wöchentlich geprüft, ob es gültig ist.</td>
+						<td>Sorgt für das Schloss-Symbol im Browser und verlängert sich automatisch.</td>
 					</tr>
+
+					<?php endif; ?>
 
 				</tbody>
 			</table>
@@ -740,12 +740,12 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="new-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="new-users">Neue Benutzerkonten</h2>
-				<p class="text--narrow">Hier siehst du, welche Benutzerkonten in diesem Zeitraum auf deiner Website angelegt wurden. Die Rolle bestimmt, was jemand darf: Administratoren dürfen alles, Redakteure Inhalte bearbeiten und veröffentlichen, aber keine Einstellungen ändern. Prüf kurz, ob du jedes neue Konto kennst. Ein unbekanntes Konto, vor allem mit Administrator-Rechten, kann ein Zeichen dafür sein, dass sich jemand unbefugt Zugang verschafft hat. Dann melde dich bitte sofort.</p>
+				<p class="text--narrow">Diese Konten wurden neu angelegt. Prüf kurz, ob du alle kennst. Ein fremdes Konto, vor allem mit der Rolle Administrator (darf alles), kann auf einen Einbruch hindeuten. Dann melde dich bitte sofort.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Datum</th>
 						<th scope="col" class="th">Benutzer</th>
 						<th scope="col" class="th table-column-size--20">Rolle</th>
 						<th scope="col" class="th">Angelegt von</th>
@@ -776,12 +776,12 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="deleted-users">
 			<div class="flow section-heading-spacer">
 				<h2 id="deleted-users">Gelöschte Benutzerkonten</h2>
-				<p class="text--narrow">Hier siehst du, welche Benutzerkonten in diesem Zeitraum gelöscht wurden und von wem. Das passiert zum Beispiel, wenn jemand dein Team verlässt. Prüf auch hier, ob jede Löschung von dir oder deinem Team stammt. Verlässt jemand dein Team, sollte sein Konto immer gelöscht werden. Offene Konten ehemaliger Mitarbeiter sind ein häufiges Einfallstor.</p>
+				<p class="text--narrow">Diese Konten wurden gelöscht. Prüf kurz, ob das von dir oder deinem Team kam. Verlässt jemand dein Team, sollte sein Konto immer gelöscht werden.</p>
 			</div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" class="th">Zeitpunkt</th>
+						<th scope="col" class="th">Datum</th>
 						<th scope="col" class="th">Benutzer</th>
 						<th scope="col" class="th table-column-size--20">Rolle</th>
 						<th scope="col" class="th">Gelöscht von</th>
