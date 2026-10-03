@@ -373,7 +373,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="analytics">
 			<div class="flow section-heading-spacer">
 				<h2 id="analytics">Besucher deiner Website</h2>
-				<p class="text--narrow">Hier siehst du, wie oft deine Website besucht wurde, gemessen mit Google Analytics. Gezählt wird nur, wer im Cookie-Hinweis zustimmt. Die echten Zahlen liegen also höher, für den Vergleich von Monat zu Monat taugen sie trotzdem.</p>
+				<p class="text--narrow">Hier siehst du, wie oft deine Website besucht wurde, gemessen mit Google Analytics. Gezählt werden nur Besucher, die im Cookie-Hinweis zustimmen, die tatsächlichen Zahlen liegen also höher. Für den Vergleich von Monat zu Monat sind sie dennoch verlässlich.</p>
 			</div>
 			<table class="section-heading-spacer">
 				<tbody>
@@ -424,7 +424,7 @@ $supportMessagingId = 'bollowco';
 			</table>
 			<figure>
 				[ga.visits.chart]
-				<figcaption>Besuche im Verlauf ([ga.startdate] – [ga.enddate])</figcaption>
+				<figcaption>Besuche im Verlauf: [ga.startdate] – [ga.enddate]</figcaption>
 			</figure>
 		</section>
 
@@ -435,7 +435,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="performance">
 			<div class="flow section-heading-spacer">
 				<h2 id="performance">Technischer Check deiner Website</h2>
-				<p class="text--narrow">Google testet automatisch, wie schnell deine Website lädt und wie sauber sie gebaut ist, am Computer und am Handy. 90 bis 100 Punkte sind sehr gut. Die Werte schwanken etwas, am Handy sind sie meist niedriger. Zum Vergleich: Die Hälfte aller WordPress-Seiten liegt am Handy unter 40 Punkten (Stand 2024).</p>
+				<p class="text--narrow">Google prüft automatisch, wie schnell deine Website lädt und wie sauber sie gebaut ist – am Computer und am Handy. Einzelne Messungen können leicht voneinander abweichen, deshalb zählt vor allem der Gesamteindruck. 90 bis 100 Punkte gelten als sehr gut. Gerade bei WordPress-Seiten sind Werte in diesem Bereich eher die Ausnahme.</p>
 			</div>
 			<table>
 				<thead>
@@ -527,8 +527,8 @@ $supportMessagingId = 'bollowco';
 				<thead>
 					<tr>
 						<th scope="col" class="th table-column-size--40">Datum</th>
-						<th scope="col" class="th">Alte Version</th>
-						<th scope="col" class="th">Aktuelle Version</th>
+						<th scope="col" class="th">Vorher</th>
+						<th scope="col" class="th">Nachher</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -626,7 +626,7 @@ $supportMessagingId = 'bollowco';
 		<section aria-labelledby="backups">
 			<div class="flow section-heading-spacer">
 				<h2 id="backups">Backups</h2>
-				<p class="text--narrow">Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, kann sie auf einen früheren Stand zurückgesetzt werden. Das läuft automatisch, du musst nichts tun.</p>
+				<p class="text--narrow">Ein Backup ist eine Sicherheitskopie deiner Website. Geht etwas schief, kann sie auf einen früheren Stand zurückgesetzt werden. Backups werden regelmäßig automatisch angelegt.</p>
 			</div>
 			<table>
 				<tbody>
@@ -652,7 +652,7 @@ $supportMessagingId = 'bollowco';
 					</tr>
 
 					<tr>
-						<th scope="row">Backups in diesem Zeitraum</th>
+						<th scope="row">Erstellte Backups in diesem Zeitraum</th>
 						<td>[backup.created.count]</td>
 					</tr>
 
